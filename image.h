@@ -1,8 +1,7 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-typedef struct
-{
+typedef struct {
     int width, height;
     int max_color;
     int ***pixels;

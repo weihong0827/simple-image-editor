@@ -1,8 +1,7 @@
 #include "main.h"
 #include "image.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   char command[100];
   Image *currentImage = NULL;
   ProgramState currentState = INITIAL;
@@ -12,8 +11,7 @@ int main(int argc, char *argv[])
   scanf("%s", command);
 
   currentImage = load_ppm(command);
-  if (currentImage == NULL)
-  {
+  if (currentImage == NULL) {
     printf("Failed to load image.\n");
     return 1;
   }
@@ -22,22 +20,19 @@ int main(int argc, char *argv[])
   printf("Enter edit command (e.g., 'brightness +10'): ");
   scanf("%s", command);
 
-  if (strncmp(command, "brightness", 10) == 0)
-  {
+  if (strncmp(command, "brightness", 10) == 0) {
     int brightness;
     scanf("%d", &brightness);
     adjust_brightness(currentImage, brightness);
   }
 
-  if (strncmp(command, "temperature", 11) == 0)
-  {
+  if (strncmp(command, "temperature", 11) == 0) {
     int temperature;
     scanf("%d", &temperature);
     adjust_temperature(currentImage, temperature);
   }
 
-  if (strncmp(command, "tint", 4) == 0)
-  {
+  if (strncmp(command, "tint", 4) == 0) {
     int tint;
     scanf("%d", &tint);
     adjust_tint(currentImage, tint);
