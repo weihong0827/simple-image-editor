@@ -26,6 +26,18 @@ int main(int argc, char *argv[]) {
     adjust_brightness(currentImage, brightness);
   }
 
+  if (strncmp(command, "temperature", 11) == 0) {
+    int temperature;
+    scanf("%d", &temperature);
+    adjust_temperature(currentImage, temperature);
+  }
+
+  if (strncmp(command, "tint", 4) == 0) {
+    int tint;
+    scanf("%d", &tint);
+    adjust_tint(currentImage, tint);
+  }
+
   currentState = EXPORTING;
   printf("Enter output file name: ");
   scanf("%s", command);

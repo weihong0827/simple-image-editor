@@ -1,4 +1,3 @@
-
 #include "image.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,6 +67,56 @@ void adjust_brightness(Image *img, int change) {
       /* R, G, B */
       for (k = 0; k < 3; k++) {
         new_value = img->pixels[i][j][k] + change;
+        if (new_value > img->max_color)
+          new_value = img->max_color;
+        if (new_value < 0)
+          new_value = 0;
+        img->pixels[i][j][k] = new_value;
+      }
+    }
+  }
+}
+
+void adjust_temperature(Image *img, int change) {
+  int i, j, k, new_value;
+  for (i = 0; i < img->height; i++) {
+    for (j = 0; j < img->width; j++) {
+      /* R, G, B */
+      for (k = 0; k < 3; k++) {
+        if (k == 0) {
+          new_value = img->pixels[i][j][k] + change;
+        }
+        else if (k == 1) {
+          new_value = img->pixels[i][j][k];
+        }
+        else if (k == 2) {
+          new_value = img->pixels[i][j][k] - change;
+        }
+        if (new_value > img->max_color)
+          new_value = img->max_color;
+        if (new_value < 0)
+          new_value = 0;
+        img->pixels[i][j][k] = new_value;
+      }
+    }
+  }
+}
+
+void adjust_tint(Image *img, int change) {
+  int i, j, k, new_value;
+  for (i = 0; i < img->height; i++) {
+    for (j = 0; j < img->width; j++) {
+      /* R, G, B */
+      for (k = 0; k < 3; k++) {
+        if (k == 0) {
+          new_value = img->pixels[i][j][k] + change;
+        }
+        else if (k == 1) {
+          new_value = img->pixels[i][j][k] - change;
+        }
+        else if (k == 2) {
+          new_value = img->pixels[i][j][k];
+        }
         if (new_value > img->max_color)
           new_value = img->max_color;
         if (new_value < 0)
