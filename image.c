@@ -1,5 +1,4 @@
 #include "image.h"
-#include "adjustment_func.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -80,6 +79,7 @@ void image_apply(Image *img, int (*func)(AdjustmentParms *parms),
       }
       for (k = 0; k < 3; k++) {
         params->pixel_value = img->pixels[i][j][k];
+        params->pixel_index = k;
         new_value = func(params);
         if (new_value > img->max_color)
           new_value = img->max_color;
@@ -145,6 +145,38 @@ void adjust_brightness(Image *img, float change) {
 void adjust_shadow(Image *img, float gamma) {
   AdjustmentParms *params = initParam(SHADOW, gamma, 64, 128);
   image_apply(img, shadow_func, params);
+  free(params);
+}
+
+void adjust_greyscale(Image *img, float change) {
+  /* change is not used */
+  AdjustmentParms *params = initParam(GREY_SCALE, 0, 0, 255);
+  image_apply(img, grey_scale_func, params);
+  free(params);
+}
+void adjust_negate(Image *img, float change) {
+  /* 0 for negate red channel, 1 for negate green channel, 2 for negate blue
+   * channel */
+  AdjustmentParms *params = initParam(NEGATE, change, 0, 255);
+  image_apply(img, negate_func, params);
+  free(params);
+}
+void flatten(Image *img, float change) {
+  /* 0 for flatten red channel, 1 for negate green channel, 2 for negate blue
+   * channel */
+  AdjustmentParms *params = initParam(FLATTEN, change, 0, 255);
+  image_apply(img, flatten_func, params);
+  free(params);
+}
+void high_contrast(Image *img, float change) {
+  /* change is not used */
+  AdjustmentParms *params = initParam(HIGH_CONTRAST, 0, 0, 255);
+  image_apply(img, high_contrast_adjustment, params);
+  free(params);
+}
+void add_noise(Image *img, float change) {
+  AdjustmentParms *params = initParam(NOISE, change, 0, 255);
+  image_apply(img, noise_adjustment, params);
   free(params);
 }
 

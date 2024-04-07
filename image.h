@@ -1,5 +1,6 @@
 #ifndef IMAGE_H
 #define IMAGE_H
+#include "adjustment_func.h"
 
 typedef struct {
   int width, height;
@@ -15,5 +16,13 @@ void adjust_temperature(Image *img, int change);
 void adjust_tint(Image *img, int change);
 void adjust_shadow(Image *img, float change);
 void free_image(Image *img);
+void image_apply(Image *img, int (*func)(AdjustmentParms *parms),
+                 AdjustmentParms *params);
 
+void flatten(Image *img, float change);
+
+void adjust_greyscale(Image *img, float change);
+void adjust_negate(Image *img, float change);
+void high_contrast(Image *img, float change);
+void add_noise(Image *img, float change);
 #endif

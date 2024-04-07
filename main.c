@@ -3,6 +3,7 @@
 Command commands[] = {
     {"brightness", 10, adjust_brightness},
     {"shadow", 6, adjust_shadow},
+
 };
 int find_command(const char *name) {
   int i;
