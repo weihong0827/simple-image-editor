@@ -1,8 +1,15 @@
 #include "main.h"
+#include "image.h"
 
 Command commands[] = {
-    {"brightness", 10, adjust_brightness},
-    {"shadow", 6, adjust_shadow},
+    {"brightness", adjust_brightness},
+    {"shadow", adjust_shadow},
+    {"high_contrast", high_contrast},
+    {"noise", add_noise},
+    {"flatten", flatten},
+    {"negate", adjust_negate},
+    {"temperature", adjust_temperature},
+    {"tint", adjust_tint},
 
 };
 int find_command(const char *name) {
@@ -39,25 +46,13 @@ int main(int argc, char *argv[]) {
   // scanf("%s", command);
 
   // cmd_index = find_command(command);
-  cmd_index = find_command("shadow");
+  cmd_index = find_command("noise");
   if (cmd_index >= 0) {
     // scanf("%f", &value);
     // printf("%f,%d\n", value, cmd_index);
-    commands[cmd_index].func(currentImage, 0.5);
+    commands[cmd_index].func(currentImage, 2);
   } else {
     printf("Unknown command.\n");
-  }
-
-  if (strncmp(command, "temperature", 11) == 0) {
-    int temperature;
-    scanf("%d", &temperature);
-    adjust_temperature(currentImage, temperature);
-  }
-
-  if (strncmp(command, "tint", 4) == 0) {
-    int tint;
-    scanf("%d", &tint);
-    adjust_tint(currentImage, tint);
   }
 
   currentState = EXPORTING;

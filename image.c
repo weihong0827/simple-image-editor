@@ -91,7 +91,7 @@ void image_apply(Image *img, int (*func)(AdjustmentParms *parms),
   }
 }
 
-void adjust_temperature(Image *img, int change) {
+void adjust_temperature(Image *img, float change) {
   int i, j, k, new_value;
   for (i = 0; i < img->height; i++) {
     for (j = 0; j < img->width; j++) {
@@ -114,7 +114,7 @@ void adjust_temperature(Image *img, int change) {
   }
 }
 
-void adjust_tint(Image *img, int change) {
+void adjust_tint(Image *img, float change) {
   int i, j, k, new_value;
   for (i = 0; i < img->height; i++) {
     for (j = 0; j < img->width; j++) {
@@ -148,6 +148,7 @@ void adjust_shadow(Image *img, float gamma) {
   free(params);
 }
 
+/* cannot use image apply */
 void adjust_greyscale(Image *img, float change) {
   /* change is not used */
   AdjustmentParms *params = initParam(GREY_SCALE, 0, 0, 255);

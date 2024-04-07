@@ -10,7 +10,6 @@ typedef enum { INITIAL, WAITING_FOR_FILE, EDITING, EXPORTING } ProgramState;
 
 typedef struct {
   char *command;
-  int size;
   void (*func)(Image *, float);
 } Command;
 

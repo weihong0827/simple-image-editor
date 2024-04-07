@@ -54,7 +54,6 @@ int grey_scale_func(AdjustmentParms *params) {
            ? r_weight
            : (params->pixel_index == 1 ? g_weight : b_weight));
   return greyscale_value;
-  return result;
 }
 int negate_func(AdjustmentParms *params) {
   int result;
@@ -73,6 +72,9 @@ int flatten_func(AdjustmentParms *params) {
   if (params->type != FLATTEN) {
     printf("Error: flatten function called with wrong parameters\n");
     return -1;
+  }
+  if (params->adjustment_value != params->pixel_index) {
+    return params->pixel_value;
   }
   return 0;
 }

@@ -12,8 +12,8 @@ typedef struct {
 Image *load_ppm(const char *filename);
 void save_ppm(const char *filename, Image *img);
 void adjust_brightness(Image *img, float change);
-void adjust_temperature(Image *img, int change);
-void adjust_tint(Image *img, int change);
+void adjust_temperature(Image *img, float change);
+void adjust_tint(Image *img, float change);
 void adjust_shadow(Image *img, float change);
 void free_image(Image *img);
 void image_apply(Image *img, int (*func)(AdjustmentParms *parms),
