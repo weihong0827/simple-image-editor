@@ -14,9 +14,10 @@ Compile the source code with your C compiler.
 ```bash
 make compile
 ```
-You can directly run the program with the following command.
+You can directly run the program with the following command. include the name of the file you wish to edit, or the folder in which you wish to edit all the photos of.
 ```bash
-make run
+make run filename=./images //folder
+make run filename=./images/caked.ppm //file
 ```
 It will automatically compile the source code and run the program.
 

@@ -22,7 +22,7 @@ clean:
 	rm -f $(TARGET) $(OBJS)
 
 run: compile
-	$(BIN)/$(TARGET)
+	$(BIN)/$(TARGET) $(filename)
 
 # Dependency
 main.o: image.h

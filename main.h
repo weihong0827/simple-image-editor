@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <dirent.h>
 
 #include "image.h"
 
@@ -12,5 +13,10 @@ typedef struct {
   char *command;
   void (*func)(Image *, float);
 } Command;
+
+typedef struct{
+  int cmd_index;
+  float value;
+}Preset;
 
 Command *initCommand(char *command, int size, void (*func)(Image *, int));
