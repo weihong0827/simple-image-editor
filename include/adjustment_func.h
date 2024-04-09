@@ -6,7 +6,7 @@ enum AdjustmentType {
   FLATTEN,
   HIGH_CONTRAST,
   BLACK_AND_WHITE,
-  NOISE,
+  NOISE
 };
 typedef struct {
   enum AdjustmentType type;

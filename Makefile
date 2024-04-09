@@ -1,4 +1,3 @@
-
 # Define compiler
 CC = gcc
 
@@ -17,7 +16,7 @@ SRCS := $(wildcard $(SRC_DIR)/*.c)
 
 compile:${SRCS}
 	# $(CC) $(CFLAGS) -o $(BIN)/$(TARGET) $(SRCS)
-	$(CC) $(IFLAGS) -o $(BIN)/$(TARGET) $(SRCS)
+	$(CC) $(IFLAGS) $(CFLAGS) -fsanitize=address -o $(BIN)/$(TARGET) $(SRCS)
 
 # Clean target
 clean:

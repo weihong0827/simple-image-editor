@@ -14,7 +14,7 @@ typedef struct{
   float value;
 } Preset;
 
-Command commands[NUM_COMMANDS];
+extern Command commands[NUM_COMMANDS];
 
 Preset * init_preset(float value,  int cmd_index);
 void delete_preset(Preset** preset, int f);

@@ -22,9 +22,12 @@ Preset * init_preset(float value,  int cmd_index){
 }
 
 void delete_preset(Preset** preset, int f){
-  for (int i =0; i < f; i++){
+  int i;
+
+  for (i =0; i < f; i++){
     free(preset[i]);
   }
+  
   free(preset);
 }
 
