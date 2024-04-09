@@ -53,7 +53,7 @@ char** access_files(char* dir_path, int* all) {
         continue;
       }
       count++;
-      files = (char **) realloc(files, sizeof(char *) * count);
+      files = (char **) realloc(files, sizeof(char *) * (count+1));
       // path = realpath(f->d_name, NULL);
       // printf("%s\n", path);
       l = strlen(f->d_name);
@@ -62,13 +62,16 @@ char** access_files(char* dir_path, int* all) {
       strcat(files[count - 1], "/");
       strcat(files[count - 1], f->d_name);
     }
+    files[count] = NULL;
     closedir(directory);
   }
   else {
     printf("Loading single file.\n");
     *all = 0;
     l = strlen(dir_path);
+    files = (char **) realloc(files, sizeof(char *) * (2));
     files[0] = (char *) malloc(sizeof(char) * (l+1));
+    files[1] = NULL;
     strcpy(files[0], dir_path);
   }
   return files;
@@ -86,6 +89,7 @@ Preset** enter_edits() {
     printf("Enter edit command (e.g., 'brightness') or 'exit' to end edit: ");
     scanf("%s", command);
     if (strcmp(command, "exit") == 0) {
+      presets[count] = NULL;
       return presets;
     }
     printf("%s\n", command);
@@ -94,7 +98,7 @@ Preset** enter_edits() {
       count++;
       printf("Enter value (e.g., +10): ");
       scanf("%f", &value);
-      presets = (Preset **) realloc(presets, sizeof(Preset*) * count);
+      presets = (Preset **) realloc(presets, sizeof(Preset*) * (count + 1));
       presets[count - 1] = init_preset(value, cmd_index);
     }else{
       printf("Unknown command.\n");
