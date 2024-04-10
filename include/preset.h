@@ -14,11 +14,12 @@ typedef struct
 {
   int cmd_index;
   float value;
+  int preset_step;
 } Preset;
 
 extern Command commands[NUM_COMMANDS];
 
-Preset *init_preset(float value, int cmd_index);
+Preset *init_preset(float value, int cmd_index, int preset_step);
 void delete_preset(Preset **preset, int f);
 int find_command(const char *name);
 Preset **enter_edits(void);
