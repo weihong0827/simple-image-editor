@@ -1,3 +1,4 @@
 .DS_Store
 bin/
 *.ppm
+.vscode/settings.json
