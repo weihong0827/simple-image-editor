@@ -139,10 +139,10 @@ int main(int argc, char *argv[])
           {
             currentState = EXPORTING;
             save_ppm(images[n]->filename, currentImage);
-            export_preset(presets);
           }
           n++;
         }
+        export_preset(presets);
         delete_preset(presets, p);
       }
       else
@@ -160,8 +160,8 @@ int main(int argc, char *argv[])
           {
             currentState = EXPORTING;
             save_ppm(images[n]->filename, currentImage);
-            export_preset(presets);
           }
+          export_preset(presets);
           delete_preset(presets, p);
           n++;
         }
