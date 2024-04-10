@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 Image *load_ppm(const char *filename) {
   int i, j;
   Image *img;
@@ -52,6 +53,25 @@ Image *load_ppm(const char *filename) {
   return img;
 }
 
+PPMFile* to_sdl_image(Image* img, PPMFile* ppm_data){
+
+  ppm_data->Header.width = img->width;
+  ppm_data->Header.height = img->height;
+  ppm_data->Header.maxval = img->max_color;
+  int i, j, k = 0;
+  for (i = 0; i < img->height; i++) {
+    for (j = 0; j < img->width; j++) {
+      ppm_data->Body.pixel_data[k].r = img->pixels[i][j][0];
+      ppm_data->Body.pixel_data[k].g = img->pixels[i][j][1];
+      ppm_data->Body.pixel_data[k].b = img->pixels[i][j][2];
+      k++;
+    }
+  }
+  return ppm_data;
+}
+
+void free_sdl(PPMFile* ppm_data) { free(ppm_data->Body.pixel_data); free(ppm_data);}
+
 void save_ppm(const char *filename, Image *img) {
   int i, j;
   char save_path[100];
@@ -60,8 +80,8 @@ void save_ppm(const char *filename, Image *img) {
   p[strlen(filename) - 4] = '\0';
   snprintf(save_path, strlen(p) + 10, "%s_edit.ppm", p);
   printf("Saving to %s\n", save_path);
-
-  fp = fopen(save_path, "w");
+  
+  fp = fopen(filename, "w");
   if (!fp) {
     perror("File opening failed");
     return;
@@ -75,7 +95,7 @@ void save_ppm(const char *filename, Image *img) {
     }
     fprintf(fp, "\n");
   }
-  free(p);
+
   fclose(fp);
 }
 
@@ -209,6 +229,5 @@ void free_image(Image *img) {
     free(img->pixels[i]);
   }
   free(img->pixels);
-  free(img->filename);
   free(img);
 }

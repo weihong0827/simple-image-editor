@@ -1,10 +1,12 @@
 #include "main.h"
 #include "image.h"
 #include "preset.h"
+#include "sdl_engine.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+SDLEngine engine;
 
 Image **access_files(char *dir_path, int * all)
 {
@@ -61,11 +63,28 @@ Image **access_files(char *dir_path, int * all)
 int apply_edits(Image *image, Preset **presets)
 {
   int i = 0;
+  int init_succeeded;
+  printf("apply edits function %s\n", image->filename);
+  PPMFile* ppm_data = (PPMFile*) malloc(sizeof(PPMFile));
+  ppm_data->Body.pixel_data = (Pixel*) malloc(sizeof(Pixel) * image->width * image->height);
+  to_sdl_image(image, ppm_data);
+  printf("apply edits function");
+  init_succeeded = initialize_engine(&engine, image->filename, ppm_data);
+  if (init_succeeded) {
+    run(&engine);
+  }
   while (presets[i])
   {
+    destroy_texture();
     commands[presets[i]->cmd_index].func(image, presets[i]->value);
+    (&engine)->is_running = 1;
+    to_sdl_image(image, ppm_data);
+    reinit_renderer(&(&engine)->renderer, ppm_data);
     i++;
+    run(&engine);
   }
+  terminate_engine(&engine);
+  free_sdl(ppm_data);
   return i;
 }
 
