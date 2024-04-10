@@ -15,6 +15,11 @@ typedef struct {
     Image *img;
 } CallbackData;
 
+typedef struct {
+    GtkImage *image;
+    Image *img;
+} UndoData;
+
 GdkPixbuf *convert_image_to_pixbuf(Image *img);
 void updateAdjustment(GtkLabel *adj, int num);
 void addAdjustment(GtkWidget *button, CallbackData *data);

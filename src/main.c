@@ -4,6 +4,44 @@
 #include <stdlib.h>
 #include <string.h>
 
+Image states[5];
+
+// add new state to the states array
+void add_state(Image *img) {
+  for (int i = 4; i > 0; i--) {
+    states[i] = states[i - 1];
+  }
+  // copy the current image to the first state
+  // hard copy instead of pointer copy
+  Image *new_img = malloc(sizeof(Image));
+  new_img->width = img->width;
+  new_img->height = img->height;
+  new_img->pixels =  malloc(img->height * sizeof(int **));
+  for (int i = 0; i < img->height; i++) {
+    new_img->pixels[i] = malloc(img->width * sizeof(int *));
+    for (int j = 0; j < img->width; j++) {
+      new_img->pixels[i][j] = malloc(3 * sizeof(int));
+      new_img->pixels[i][j][0] = img->pixels[i][j][0];
+      new_img->pixels[i][j][1] = img->pixels[i][j][1];
+      new_img->pixels[i][j][2] = img->pixels[i][j][2];
+    }
+  }
+  states[0] = *new_img;
+}
+
+// undo the last state
+void undo(Image *img) {
+  for (int i = 0; i < img->height; i++) {
+    for (int j = 0; j < img->width; j++) {
+      img->pixels[i][j][0] = states[0].pixels[i][j][0];
+      img->pixels[i][j][1] = states[0].pixels[i][j][1];
+      img->pixels[i][j][2] = states[0].pixels[i][j][2];
+    }
+  }
+  for (int i = 0; i < 4; i++) {
+    states[i] = states[i + 1];
+  }
+}
 
 GdkPixbuf *convert_image_to_pixbuf(Image *img) {
   int i, j;
@@ -33,7 +71,7 @@ void updateAdjustment(GtkLabel *adj, int num) {
   gchar *display;
   display = g_strdup_printf("%d", num);    
   gtk_label_set_text (GTK_LABEL(adj), display); 
-  g_free(display); 
+  g_free(display);
 }
 
 void updateImage(GtkWidget *image, Image *img) {
@@ -50,7 +88,7 @@ void addAdjustment(GtkWidget *button, CallbackData *data) {
     adjust_brightness(data->img, 5);
   }
   else if (strcmp(data->command, "Shadow") == 0) {
-    adjust_shadow(data->img, 5);
+    adjust_shadow(data->img, 2);
   }
   else if (strcmp(data->command, "Temperature") == 0) {
     adjust_temperature(data->img, 5);
@@ -62,7 +100,7 @@ void addAdjustment(GtkWidget *button, CallbackData *data) {
     add_noise(data->img, 1);
   }
 
-
+  add_state(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
@@ -75,7 +113,7 @@ void minusAdjustment(GtkWidget *button, CallbackData *data) {
     adjust_brightness(data->img, -5);
   }
   else if (strcmp(data->command, "Shadow") == 0) {
-    adjust_shadow(data->img, -5);
+    adjust_shadow(data->img, -2);
   }
   else if (strcmp(data->command, "Temperature") == 0) {
     adjust_temperature(data->img, -5);
@@ -87,6 +125,12 @@ void minusAdjustment(GtkWidget *button, CallbackData *data) {
     add_noise(data->img, -1);
   }
 
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void undo_button_clicked(GtkButton *button, UndoData *data) {
+  undo(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
@@ -140,6 +184,17 @@ int main(int argc, char *argv[]) {
   // Exit button
   GtkWidget *save_button = gtk_button_new_with_label("Save");
   g_signal_connect(save_button, "clicked", G_CALLBACK(save_button_clicked), img);
+
+
+  UndoData *undo_data = g_malloc(sizeof(UndoData));
+  undo_data->image = image;
+  undo_data->img = img;
+
+  // Undo button
+  GtkWidget *undo_button = gtk_button_new_with_label("Undo");
+  g_signal_connect(undo_button, "clicked", G_CALLBACK(undo_button_clicked), undo_data);
+
+
 
   CallbackData *brightness_data = g_malloc(sizeof(CallbackData));
   brightness_data->command = "Brightness";
@@ -217,7 +272,7 @@ int main(int argc, char *argv[]) {
   GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start(GTK_BOX(hbox), image, TRUE, TRUE, 0);
 
-  GtkWidget *editingbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
+  GtkWidget *editingbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 7);
 
   GtkWidget *brightnessbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start(GTK_BOX(brightnessbox), button_decrease_brightness, TRUE, TRUE, 0);
@@ -255,6 +310,7 @@ int main(int argc, char *argv[]) {
   gtk_box_pack_start(GTK_BOX(editingbox), tempbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), tintbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), noisebox, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(editingbox), undo_button, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), save_button, TRUE, TRUE, 0);
 
 
