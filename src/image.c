@@ -125,7 +125,7 @@ void adjust_tint(Image *img, float change) {
         } else if (k == 1) {
           new_value = img->pixels[i][j][k] - change;
         } else if (k == 2) {
-          new_value = img->pixels[i][j][k];
+          new_value = img->pixels[i][j][k] + change;
         }
         if (new_value > img->max_color)
           new_value = img->max_color;

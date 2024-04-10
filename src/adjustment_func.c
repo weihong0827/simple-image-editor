@@ -22,7 +22,6 @@ int shadow_func(AdjustmentParms *params) {
 
   if (params->adjustment_value > 1) {
     result = params->pixel_value + (params->adjustment_value - 1) * (255 - params->pixel_value);
-    printf("Shadow: %d\n", result);
   } else {
     result = params->pixel_value * params->adjustment_value;
   }

@@ -11,8 +11,6 @@ void add_state(Image *img) {
   for (int i = 4; i > 0; i--) {
     states[i] = states[i - 1];
   }
-  // copy the current image to the first state
-  // hard copy instead of pointer copy
   Image *new_img = malloc(sizeof(Image));
   new_img->width = img->width;
   new_img->height = img->height;
@@ -80,7 +78,7 @@ void updateImage(GtkWidget *image, Image *img) {
 }
 
 void addAdjustment(GtkWidget *button, CallbackData *data) {
-  int num = atoi(gtk_label_get_text(data->adj));
+  int num = atoi(gtk_label_get_text(GTK_LABEL(data->adj)));
   num += 1;
   updateAdjustment(GTK_LABEL(data->adj), num);
 
@@ -88,7 +86,7 @@ void addAdjustment(GtkWidget *button, CallbackData *data) {
     adjust_brightness(data->img, 5);
   }
   else if (strcmp(data->command, "Shadow") == 0) {
-    adjust_shadow(data->img, 2);
+    adjust_shadow(data->img, 1.05);
   }
   else if (strcmp(data->command, "Temperature") == 0) {
     adjust_temperature(data->img, 5);
@@ -97,7 +95,7 @@ void addAdjustment(GtkWidget *button, CallbackData *data) {
     adjust_tint(data->img, 5);
   }
   else if (strcmp(data->command, "Noise") == 0) {
-    add_noise(data->img, 1);
+    add_noise(data->img, 0.1);
   }
 
   add_state(data->img);
@@ -105,7 +103,7 @@ void addAdjustment(GtkWidget *button, CallbackData *data) {
 }
 
 void minusAdjustment(GtkWidget *button, CallbackData *data) {
-  int num = atoi(gtk_label_get_text(data->adj));
+  int num = atoi(gtk_label_get_text(GTK_LABEL(data->adj)));
   num -= 1;
   updateAdjustment(GTK_LABEL(data->adj), num);
 
@@ -113,7 +111,7 @@ void minusAdjustment(GtkWidget *button, CallbackData *data) {
     adjust_brightness(data->img, -5);
   }
   else if (strcmp(data->command, "Shadow") == 0) {
-    adjust_shadow(data->img, -2);
+    adjust_shadow(data->img, 0.95);
   }
   else if (strcmp(data->command, "Temperature") == 0) {
     adjust_temperature(data->img, -5);
@@ -121,22 +119,79 @@ void minusAdjustment(GtkWidget *button, CallbackData *data) {
   else if (strcmp(data->command, "Tint") == 0) {
     adjust_tint(data->img, -5);
   }
-  else if (strcmp(data->command, "Noise") == 0) {
-    add_noise(data->img, -1);
-  }
 
   add_state(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
+void redNegate(GtkWidget *button, CallbackData *data) {
+  adjust_negate(data->img, 0);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void greenNegate(GtkWidget *button, CallbackData *data) {
+  adjust_negate(data->img, 1);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void blueNegate(GtkWidget *button, CallbackData *data) {
+  adjust_negate(data->img, 2);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void redFlatten(GtkWidget *button, CallbackData *data) {
+  flatten(data->img, 0);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void greenFlatten(GtkWidget *button, CallbackData *data) {
+  flatten(data->img, 1);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void blueFlatten(GtkWidget *button, CallbackData *data) {
+  flatten(data->img, 2);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void applyHighContrast(GtkWidget *button, CallbackData *data) {
+  high_contrast(data->img, 128);
+  add_state(data->img);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
 void undo_button_clicked(GtkButton *button, UndoData *data) {
+  if (states[0].pixels == NULL) {
+    printf("No more undo\n");
+    return;
+  }
   undo(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
+void reset_button_clicked(GtkButton *button, ResetData *data) {
+  for (int i = 0; i < data->original_img->height; i++) {
+    for (int j = 0; j < data->original_img->width; j++) {
+      data->edited_img->pixels[i][j][0] = data->original_img->pixels[i][j][0];
+      data->edited_img->pixels[i][j][1] = data->original_img->pixels[i][j][1];
+      data->edited_img->pixels[i][j][2] = data->original_img->pixels[i][j][2];
+    }
+  }
+  updateImage(GTK_WIDGET(data->image), data->edited_img);
+  for (int i = 0; i < 5; i++) {
+    states[i].pixels = NULL;
+  }
+}
+
 void save_button_clicked(GtkButton *button, Image *img) {
   save_ppm("output.ppm", img);
-  g_print("Image saved\n");
+  printf("Image saved\n");
   gtk_main_quit();
 }
 
@@ -146,21 +201,28 @@ int main(int argc, char *argv[]) {
 
   // Check for command line arguments (image filename)
   if (argc != 2) {
-    g_printerr("Usage: %s <image.ppm>\n", argv[0]);
+    printf("Usage: %s <image.ppm>\n", argv[0]);
     return 1;
   }
 
   // Load PPM image
   Image *img = load_ppm(argv[1]);
   if (!img) {
-    g_printerr("Error loading image\n");
+    printf("Error loading image\n");
+    return 1;
+  }
+
+  // copy the image to original_image for reset
+  Image *original_img = load_ppm(argv[1]);
+  if (!original_img) {
+    printf("Error loading image\n");
     return 1;
   }
 
   // Convert image to GdkPixbuf
   GdkPixbuf *pixbuf = convert_image_to_pixbuf(img);
   if (!pixbuf) {
-    g_printerr("Error converting image to pixbuf\n");
+    printf("Error converting image to pixbuf\n");
     return 1;
   }
 
@@ -170,61 +232,88 @@ int main(int argc, char *argv[]) {
   GtkWidget *image = gtk_image_new_from_pixbuf(pixbuf);
 
   // Labels
-  GtkLabel *label_brightness = gtk_label_new("Brightness");
-  GtkLabel *brightness_value = gtk_label_new("0");
-  GtkLabel *label_shadow = gtk_label_new("Shadow");
-  GtkLabel *shadow_value = gtk_label_new("0");
-  GtkLabel *label_temp = gtk_label_new("Temperature");
-  GtkLabel *temp_value = gtk_label_new("0");
-  GtkLabel *label_tint = gtk_label_new("Tint");
-  GtkLabel *tint_value = gtk_label_new("0");
-  GtkLabel *label_noise = gtk_label_new("Noise");
-  GtkLabel *noise_value = gtk_label_new("0");
+  GtkWidget *label_brightness = gtk_label_new("Brightness");
+  GtkWidget *brightness_value = gtk_label_new("0");
+  GtkWidget *label_shadow = gtk_label_new("Shadow");
+  GtkWidget *shadow_value = gtk_label_new("0");
+  GtkWidget *label_temp = gtk_label_new("Temperature");
+  GtkWidget *temp_value = gtk_label_new("0");
+  GtkWidget *label_tint = gtk_label_new("Tint");
+  GtkWidget *tint_value = gtk_label_new("0");
+  GtkWidget *label_noise = gtk_label_new("Noise");
+  GtkWidget *noise_value = gtk_label_new("0");
+  GtkWidget *label_negate = gtk_label_new("Negate");
+  GtkWidget *label_flatten = gtk_label_new("Flatten");
+  GtkWidget *label_high_contrast = gtk_label_new("High Contrast");
 
-  // Exit button
-  GtkWidget *save_button = gtk_button_new_with_label("Save");
-  g_signal_connect(save_button, "clicked", G_CALLBACK(save_button_clicked), img);
-
-
-  UndoData *undo_data = g_malloc(sizeof(UndoData));
+  UndoData *undo_data = malloc(sizeof(UndoData));
   undo_data->image = image;
   undo_data->img = img;
+  
+  ResetData *reset_data = malloc(sizeof(ResetData));
+  reset_data->image = image;
+  reset_data->original_img = original_img;
+  reset_data->edited_img = img;
 
-  // Undo button
-  GtkWidget *undo_button = gtk_button_new_with_label("Undo");
-  g_signal_connect(undo_button, "clicked", G_CALLBACK(undo_button_clicked), undo_data);
-
-
-
-  CallbackData *brightness_data = g_malloc(sizeof(CallbackData));
+  CallbackData *brightness_data = malloc(sizeof(CallbackData));
   brightness_data->command = "Brightness";
   brightness_data->adj = brightness_value;
   brightness_data->image = image;
   brightness_data->img = img;
 
-  CallbackData *shadow_data = g_malloc(sizeof(CallbackData));
+  CallbackData *shadow_data = malloc(sizeof(CallbackData));
   shadow_data->command = "Shadow";
   shadow_data->adj = shadow_value;
   shadow_data->image = image;
   shadow_data->img = img;
 
-  CallbackData *temp_data = g_malloc(sizeof(CallbackData));
+  CallbackData *temp_data = malloc(sizeof(CallbackData));
   temp_data->command = "Temperature";
   temp_data->adj = temp_value;
   temp_data->image = image;
   temp_data->img = img;
 
-  CallbackData *tint_data = g_malloc(sizeof(CallbackData));
+  CallbackData *tint_data = malloc(sizeof(CallbackData));
   tint_data->command = "Tint";
   tint_data->adj = tint_value;
   tint_data->image = image;
   tint_data->img = img;
 
-  CallbackData *noise_data = g_malloc(sizeof(CallbackData));
+  CallbackData *noise_data = malloc(sizeof(CallbackData));
   noise_data->command = "Noise";
   noise_data->adj = noise_value;
   noise_data->image = image;
   noise_data->img = img;
+
+  CallbackData *negate_data = malloc(sizeof(CallbackData));
+  negate_data->command = "Negate";
+  negate_data->adj = label_negate;
+  negate_data->image = image;
+  negate_data->img = img;
+
+  CallbackData *flatten_data = malloc(sizeof(CallbackData));
+  flatten_data->command = "Flatten";
+  flatten_data->adj = label_flatten;
+  flatten_data->image = image;
+  flatten_data->img = img;
+
+  CallbackData *high_contrast_data = malloc(sizeof(CallbackData));
+  high_contrast_data->command = "High Contrast";
+  high_contrast_data->adj = label_high_contrast;
+  high_contrast_data->image = image;
+  high_contrast_data->img = img;
+
+  // Undo button
+  GtkWidget *undo_button = gtk_button_new_with_label("Undo");
+  g_signal_connect(undo_button, "clicked", G_CALLBACK(undo_button_clicked), undo_data);
+
+  // Reset button
+  GtkWidget *reset_button = gtk_button_new_with_label("Reset");
+  g_signal_connect(reset_button, "clicked", G_CALLBACK(reset_button_clicked), reset_data);
+
+  // Save button
+  GtkWidget *save_button = gtk_button_new_with_label("Save");
+  g_signal_connect(save_button, "clicked", G_CALLBACK(save_button_clicked), img);
 
   // Button for brightness increase
   GtkWidget *button_increase_brightness = gtk_button_new_with_label("+");
@@ -262,17 +351,27 @@ int main(int argc, char *argv[]) {
   GtkWidget *button_increase_noise = gtk_button_new_with_label("+");
   g_signal_connect(button_increase_noise, "clicked", G_CALLBACK(addAdjustment), noise_data); // Pass image widget to the function
 
-  // Button for noise decrease
-  GtkWidget *button_decrease_noise = gtk_button_new_with_label("-");
-  g_signal_connect(button_decrease_noise, "clicked", G_CALLBACK(minusAdjustment), noise_data); // Pass image widget to the function
-
-
+  // Button for negate red, green, blue
+  GtkWidget *button_negate_red = gtk_button_new_with_label("Red");
+  GtkWidget *button_negate_green = gtk_button_new_with_label("Green");
+  GtkWidget *button_negate_blue = gtk_button_new_with_label("Blue");
+  g_signal_connect(button_negate_red, "clicked", G_CALLBACK(redNegate), negate_data); // Pass image widget to the function
+  g_signal_connect(button_negate_green, "clicked", G_CALLBACK(greenNegate), negate_data); // Pass image widget to the function
+  g_signal_connect(button_negate_blue, "clicked", G_CALLBACK(blueNegate), negate_data); // Pass image widget to the function
+  GtkWidget *button_flatten_red = gtk_button_new_with_label("Red");
+  GtkWidget *button_flatten_green = gtk_button_new_with_label("Green");
+  GtkWidget *button_flatten_blue = gtk_button_new_with_label("Blue");
+  g_signal_connect(button_flatten_red, "clicked", G_CALLBACK(redFlatten), flatten_data); // Pass image widget to the function
+  g_signal_connect(button_flatten_green, "clicked", G_CALLBACK(greenFlatten), flatten_data); // Pass image widget to the function
+  g_signal_connect(button_flatten_blue, "clicked", G_CALLBACK(blueFlatten), flatten_data); // Pass image widget to the function
+  GtkWidget *button_high_contrast = gtk_button_new_with_label("Apply");
+  g_signal_connect(button_high_contrast, "clicked", G_CALLBACK(applyHighContrast), high_contrast_data); // Pass image widget to the function
 
   // Layout
   GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start(GTK_BOX(hbox), image, TRUE, TRUE, 0);
 
-  GtkWidget *editingbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 7);
+  GtkWidget *editingbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 11);
 
   GtkWidget *brightnessbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start(GTK_BOX(brightnessbox), button_decrease_brightness, TRUE, TRUE, 0);
@@ -299,20 +398,37 @@ int main(int argc, char *argv[]) {
   gtk_box_pack_start(GTK_BOX(tintbox), button_increase_tint, TRUE, TRUE, 0);
 
   GtkWidget *noisebox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
-  gtk_box_pack_start(GTK_BOX(noisebox), button_decrease_noise, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(noisebox), label_noise, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(noisebox), noise_value, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(noisebox), button_increase_noise, TRUE, TRUE, 0);
 
+  GtkWidget *negatebox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
+  gtk_box_pack_start(GTK_BOX(negatebox), label_negate, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(negatebox), button_negate_red, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(negatebox), button_negate_green, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(negatebox), button_negate_blue, TRUE, TRUE, 0);
+
+  GtkWidget *flattenbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
+  gtk_box_pack_start(GTK_BOX(flattenbox), label_flatten, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(flattenbox), button_flatten_red, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(flattenbox), button_flatten_green, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(flattenbox), button_flatten_blue, TRUE, TRUE, 0);
+
+  GtkWidget *high_contrast_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
+  gtk_box_pack_start(GTK_BOX(high_contrast_box), label_high_contrast, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(high_contrast_box), button_high_contrast, TRUE, TRUE, 0);
 
   gtk_box_pack_start(GTK_BOX(editingbox), brightnessbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), shadowbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), tempbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), tintbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), noisebox, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(editingbox), negatebox, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(editingbox), flattenbox, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(editingbox), high_contrast_box, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), undo_button, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(editingbox), reset_button, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), save_button, TRUE, TRUE, 0);
-
 
   gtk_box_pack_start(GTK_BOX(hbox), editingbox, TRUE, TRUE, 0);
 

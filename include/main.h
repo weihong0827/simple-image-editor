@@ -10,15 +10,21 @@ typedef enum { INITIAL, WAITING_FOR_FILE, EDITING, EXPORTING } ProgramState;
 
 typedef struct {
     char *command;
-    GtkLabel *adj;
-    GtkImage *image;
+    GtkWidget *adj;
+    GtkWidget *image;
     Image *img;
 } CallbackData;
 
 typedef struct {
-    GtkImage *image;
+    GtkWidget *image;
     Image *img;
 } UndoData;
+
+typedef struct {
+    GtkWidget *image;
+    Image *original_img;
+    Image *edited_img;
+} ResetData;
 
 GdkPixbuf *convert_image_to_pixbuf(Image *img);
 void updateAdjustment(GtkLabel *adj, int num);
