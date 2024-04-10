@@ -2,7 +2,7 @@
 CC = gcc
 
 # Define any compile-time flags
-CFLAGS = -Wall -Werror -ansi -pedantic 
+CFLAGS = -Wall -Werror -ansi -pedantic -D_GNU_SOURCE
 IFLAGS = -Iinclude -MMD -MP
 # Define the target executable name
 TARGET = image_editor
