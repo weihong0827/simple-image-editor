@@ -6,11 +6,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-Image **access_files(char *dir_path, int * all)
+Image **access_files(char *dir_path, int *all)
 {
-  Image** images = (Image**)malloc(sizeof(Image*));
+  Image **images = (Image **)malloc(sizeof(Image *));
   DIR *directory = opendir(dir_path);
-  Image* image;
+  Image *image;
   struct dirent *f;
   int count = 0;
   char pathname[100];
@@ -33,9 +33,9 @@ Image **access_files(char *dir_path, int * all)
         continue;
       }
       count++;
-      images = (Image**) realloc(images, sizeof(Image*) * (count+1));
+      images = (Image **)realloc(images, sizeof(Image *) * (count + 1));
       images[count - 1] = (Image *)malloc(sizeof(Image));
-      images[count-1] = image;
+      images[count - 1] = image;
     }
     images[count] = NULL;
     closedir(directory);
@@ -50,7 +50,7 @@ Image **access_files(char *dir_path, int * all)
       return NULL;
     }
     printf("Loading single file.\n");
-    images = (Image**) realloc(images, sizeof(Image*) *2);
+    images = (Image **)realloc(images, sizeof(Image *) * 2);
     images[0] = (Image *)malloc(sizeof(Image));
     images[0] = image;
     images[1] = NULL;
@@ -69,12 +69,12 @@ int apply_edits(Image *image, Preset **presets)
   return i;
 }
 
-int check_export(void){
+int check_export(void)
+{
   int export;
   printf("Would you like to export the image? Yes(1) No(0)\n");
   scanf("%d", &export);
   return export;
-
 }
 
 int main(int argc, char *argv[])
@@ -82,34 +82,37 @@ int main(int argc, char *argv[])
   Image *currentImage = NULL;
   ProgramState currentState = LOAD_IMAGES;
   int n = 0;
-  Image** images;
+  Image **images;
   Preset **presets;
-  int * all; 
+  int *all;
   int i;
   int p;
   char input[200];
 
-  while(currentState!=EXIT){
+  while (currentState != EXIT)
+  {
     if (currentState == LOAD_IMAGES)
     {
-      all= (int *)malloc(sizeof(int));
+      all = (int *)malloc(sizeof(int));
       printf("Welcome to the image editor.\n");
-      while(1){
+      while (1)
+      {
         printf("Please provide file/folder path\n");
         scanf("%s", input);
-        if (!strcmp(input, "exit")) {
+        if (!strcmp(input, "exit"))
+        {
           currentState = EXIT;
           break;
         }
         images = access_files(input, all);
-        if(!images)
+        if (!images)
         {
           printf("Error accessing images.\n");
           continue;
         }
         printf("Images loaded.\n");
-        n=0;
-        while(images[n])
+        n = 0;
+        while (images[n])
         {
           printf("%s, ", images[n]->filename);
           n++;
@@ -119,22 +122,24 @@ int main(int argc, char *argv[])
         break;
       }
     }
-    else if(currentState == EDITING){
+    else if (currentState == EDITING)
+    {
       if (*all)
       {
         printf("Applying to all.\n");
         presets = enter_edits();
-        n=0;
+        n = 0;
         while (images[n])
         {
           currentImage = images[n];
           printf("Editing %s\n", images[n]->filename);
           p = apply_edits(currentImage, presets);
           printf("Edits to %s complete.\n", images[n]->filename);
-          if(check_export())
+          if (check_export())
           {
             currentState = EXPORTING;
             save_ppm(images[n]->filename, currentImage);
+            export_preset(presets);
           }
           n++;
         }
@@ -151,10 +156,11 @@ int main(int argc, char *argv[])
           currentState = EDITING;
           p = apply_edits(currentImage, presets);
           printf("Edits to %s complete.\n", images[n]->filename);
-          if(check_export())
+          if (check_export())
           {
             currentState = EXPORTING;
             save_ppm(images[n]->filename, currentImage);
+            export_preset(presets);
           }
           delete_preset(presets, p);
           n++;
@@ -163,14 +169,12 @@ int main(int argc, char *argv[])
       currentState = LOAD_IMAGES;
       free(all);
       for (i = 0; i < n; i++)
-        {
-          free_image(images[i]);
-        }
+      {
+        free_image(images[i]);
+      }
       free(images);
     }
   }
 
-
   return EXIT_SUCCESS;
-
 }

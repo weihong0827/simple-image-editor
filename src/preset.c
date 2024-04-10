@@ -19,6 +19,7 @@ Preset *init_preset(float value, int cmd_index)
   Preset *preset = (Preset *)malloc(sizeof(Preset));
   preset->value = value;
   preset->cmd_index = cmd_index;
+  printf("Preset initialized.\n");
   return preset;
 }
 
@@ -55,25 +56,43 @@ void parseCSV(Preset ***presets, char *path, int *count)
   float value;
   char *token;
   char *command;
+  int i;
   while (fgets(line, 1024, file))
   {
-    (*count)++;
-    *presets = (Preset **)realloc(*presets, sizeof(Preset *) * (*count + 1));
     token = strtok(line, ",");
+    if (token == NULL)
+      continue;
+
     command = token;
     token = strtok(NULL, ",");
+    if (token == NULL)
+      continue;
+
     value = atof(token);
     cmd_index = find_command(command);
+
     if (cmd_index >= 0)
     {
-      *presets[*count - 1] = init_preset(value, cmd_index);
+      *presets = (Preset **)realloc(*presets, sizeof(Preset *) * (*count + 1));
+      if (*presets == NULL)
+      {
+        fprintf(stderr, "Failed to reallocate memory\n");
+        return;
+      }
+      (*presets)[*count] = init_preset(value, cmd_index);
+      (*count)++;
     }
     else
     {
       printf("Unknown command.\n");
-      continue;
     }
   }
+  *presets = (Preset **)realloc(*presets, sizeof(Preset *) * (*count + 1));
+  for (i = 0; i < *count; i++)
+  {
+    printf("Command: %s, Value: %f\n", commands[(*presets)[i]->cmd_index].command, (*presets)[i]->value);
+  }
+  fclose(file);
 }
 
 Preset **enter_edits(void)
@@ -97,7 +116,9 @@ Preset **enter_edits(void)
     {
       printf("Enter path to CSV file: ");
       scanf("%s", command);
+      printf("reading csv file %s\n", command);
       parseCSV(&presets, command, &count);
+      continue;
     }
     printf("%s\n", command);
     cmd_index = find_command(command);
@@ -115,4 +136,30 @@ Preset **enter_edits(void)
       continue;
     }
   }
+}
+
+void save_csv(Preset **presets, char *path)
+{
+  FILE *file = fopen(path, "w");
+  int i = 0;
+  while (presets[i])
+  {
+    fprintf(file, "%s,%f\n", commands[presets[i]->cmd_index].command, presets[i]->value);
+    i++;
+  }
+  fclose(file);
+}
+void export_preset(Preset **presets)
+{
+  char path[100];
+  int save;
+  printf("Do you want to save the preset to a file? Yes(1) No(0)\n");
+  scanf("%d", &save);
+  if (!save)
+  {
+    return;
+  }
+  printf("Enter path to save preset: ");
+  scanf("%s", path);
+  save_csv(presets, path);
 }
