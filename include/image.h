@@ -3,6 +3,7 @@
 #include "adjustment_func.h"
 
 typedef struct {
+  char* filename;
   int width, height;
   int max_color;
   int ***pixels;

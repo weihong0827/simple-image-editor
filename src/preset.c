@@ -86,9 +86,9 @@ Preset **enter_edits(void)
 
   while (1)
   {
-    printf("Enter edit command (e.g., 'brightness') or 'exit' to end edit: ");
+    printf("Enter edit command (e.g., 'brightness') or 'done' to end edit: ");
     scanf("%s", command);
-    if (strcmp(command, "exit") == 0)
+    if (strcmp(command, "done") == 0)
     {
       presets[count] = NULL;
       return presets;

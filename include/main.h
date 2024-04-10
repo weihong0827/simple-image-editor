@@ -1,5 +1,6 @@
 #include <dirent.h>
-
+#include "image.h"
 #define MAX_HISTORY 10
 
-typedef enum { INITIAL, WAITING_FOR_FILE, EDITING, EXPORTING } ProgramState;
+typedef enum { LOAD_IMAGES, EDITING, EXPORTING, EXIT} ProgramState;
+Image **access_files(char *dir_path, int * all);

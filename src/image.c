@@ -1,10 +1,12 @@
 #include "image.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 Image *load_ppm(const char *filename) {
   int i, j;
   Image *img;
+  char file_type[3];
 
   FILE *fp = fopen(filename, "r");
   if (!fp) {
@@ -13,12 +15,22 @@ Image *load_ppm(const char *filename) {
   }
 
   img = malloc(sizeof(Image));
-  if (fscanf(fp, "P3\n%d %d\n%d\n", &img->width, &img->height,
-             &img->max_color) != 3) {
+  if (fscanf(fp, "%2s\n%d %d\n%d\n", file_type, &img->width, &img->height,
+             &img->max_color) != 4) {
+    printf("Error reading file header, file is not PPM format!\n");
     fclose(fp);
     free(img);
     return NULL;
   }
+  
+  if (strcmp(file_type,"P3")) {
+    printf("Error: not a P3 PPM file\n");
+    fclose(fp);
+    free(img);
+    return NULL;
+  }
+
+  img->filename = strdup(filename);
 
   img->pixels = malloc(img->height * sizeof(int **));
   for (i = 0; i < img->height; i++) {
@@ -42,7 +54,14 @@ Image *load_ppm(const char *filename) {
 
 void save_ppm(const char *filename, Image *img) {
   int i, j;
-  FILE *fp = fopen(filename, "w");
+  char save_path[100];
+  char* p = strdup(filename);
+  FILE *fp;
+  p[strlen(filename) - 4] = '\0';
+  snprintf(save_path, strlen(p) + 10, "%s_edit.ppm", p);
+  printf("Saving to %s\n", save_path);
+
+  fp = fopen(save_path, "w");
   if (!fp) {
     perror("File opening failed");
     return;
@@ -56,7 +75,7 @@ void save_ppm(const char *filename, Image *img) {
     }
     fprintf(fp, "\n");
   }
-
+  free(p);
   fclose(fp);
 }
 
@@ -190,5 +209,6 @@ void free_image(Image *img) {
     free(img->pixels[i]);
   }
   free(img->pixels);
+  free(img->filename);
   free(img);
 }
