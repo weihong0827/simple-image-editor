@@ -16,7 +16,7 @@ SRCS := $(wildcard $(SRC_DIR)/*.c)
 
 compile:${SRCS}
 	# $(CC) $(CFLAGS) -o $(BIN)/$(TARGET) $(SRCS)
-	$(CC) $(IFLAGS) $(CFLAGS) -fsanitize=address -o $(BIN)/$(TARGET) $(SRCS)
+	$(CC) $(IFLAGS) `pkg-config --cflags --libs gtk+-3.0` -o $(BIN)/$(TARGET) $(SRCS)
 
 # Clean target
 clean:

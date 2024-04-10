@@ -14,14 +14,14 @@ Command commands[] = {
     {"tint", adjust_tint},
 };
 
-Preset * init_preset(float value,  int cmd_index){
-  Preset * preset = (Preset *) malloc(sizeof(Preset));
+Preset *init_preset(float value,  int cmd_index){
+  Preset *preset = (Preset *) malloc(sizeof(Preset));
   preset->value = value;
   preset->cmd_index = cmd_index;
   return preset;
 }
 
-void delete_preset(Preset** preset, int f){
+void delete_preset(Preset **preset, int f){
   int i;
 
   for (i =0; i < f; i++){
