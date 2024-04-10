@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+b3af53410da416dac93f162fa72170e6 vendors/sdl/CMakeFiles/uninstall
