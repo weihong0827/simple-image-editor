@@ -21,4 +21,6 @@ Preset * init_preset(float value,  int cmd_index);
 void delete_preset(Preset** preset, int f);
 int find_command(const char *name);
 Preset** enter_edits();
+void export_preset(Preset **presets);
+void save_csv(Preset **presets, char *path);
 #endif

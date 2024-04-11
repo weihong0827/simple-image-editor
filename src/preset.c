@@ -115,3 +115,29 @@ Preset **enter_edits(void)
     }
   }
 }
+
+void save_csv(Preset **presets, char *path)
+{
+  FILE *file = fopen(path, "w");
+  int i = 0;
+  while (presets[i])
+  {
+    fprintf(file, "%s,%f\n", commands[presets[i]->cmd_index].command, presets[i]->value);
+    i++;
+  }
+  fclose(file);
+}
+void export_preset(Preset **presets)
+{
+  char path[100];
+  int save;
+  printf("Do you want to save the preset to a file? Yes(1) No(0)\n");
+  scanf("%d", &save);
+  if (!save)
+  {
+    return;
+  }
+  printf("Enter path to save preset: ");
+  scanf("%s", path);
+  save_csv(presets, path);
+}

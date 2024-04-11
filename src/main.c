@@ -157,6 +157,7 @@ int main(int argc, char *argv[])
           }
           n++;
         }
+        export_preset(presets);
         delete_preset(presets, p);
       }
       else
@@ -175,6 +176,7 @@ int main(int argc, char *argv[])
             currentState = EXPORTING;
             save_ppm(images[n]->filename, currentImage);
           }
+          export_preset(presets);
           delete_preset(presets, p);
           n++;
         }

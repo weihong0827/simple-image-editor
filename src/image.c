@@ -81,11 +81,12 @@ void save_ppm(const char *filename, Image *img) {
   snprintf(save_path, strlen(p) + 10, "%s_edit.ppm", p);
   printf("Saving to %s\n", save_path);
   
-  fp = fopen(filename, "w");
+  fp = fopen(save_path, "w");
   if (!fp) {
     perror("File opening failed");
     return;
   }
+  
 
   fprintf(fp, "P3\n%d %d\n%d\n", img->width, img->height, img->max_color);
   for (i = 0; i < img->height; i++) {
