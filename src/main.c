@@ -60,6 +60,7 @@ Image **access_files(char *dir_path, int * all)
   return images;
 }
 
+/*editted to allow for preview rendering while editting*/
 int apply_edits(Image *image, Preset **presets)
 {
   int i = 0;
@@ -67,23 +68,23 @@ int apply_edits(Image *image, Preset **presets)
   printf("apply edits function %s\n", image->filename);
   PPMFile* ppm_data = (PPMFile*) malloc(sizeof(PPMFile));
   ppm_data->Body.pixel_data = (Pixel*) malloc(sizeof(Pixel) * image->width * image->height);
-  to_sdl_image(image, ppm_data);
+  to_sdl_image(image, ppm_data); //converts image to sdl format
   printf("apply edits function");
-  init_succeeded = initialize_engine(&engine, image->filename, ppm_data);
+  init_succeeded = initialize_engine(&engine, image->filename, ppm_data); //initialised preview engine
   if (init_succeeded) {
-    run(&engine);
+    run(&engine); //run the preview
   }
   while (presets[i])
   {
-    destroy_texture();
-    commands[presets[i]->cmd_index].func(image, presets[i]->value);
+    destroy_texture(); //destroy previous texture 
+    commands[presets[i]->cmd_index].func(image, presets[i]->value); //edit the image
     (&engine)->is_running = 1;
-    to_sdl_image(image, ppm_data);
-    reinit_renderer(&(&engine)->renderer, ppm_data);
+    to_sdl_image(image, ppm_data); //convert the edited image to sdl format
+    reinit_renderer(&(&engine)->renderer, ppm_data); //reinitialise the texture
     i++;
-    run(&engine);
+    run(&engine); //run the engine with the new texture
   }
-  terminate_engine(&engine);
+  terminate_engine(&engine); //all edits applied, terminate the engine, move to the next state
   free_sdl(ppm_data);
   return i;
 }

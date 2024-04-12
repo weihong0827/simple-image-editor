@@ -1,3 +1,6 @@
+/* we do not use this file for our project but we reference the format that foxview requires 
+the ppm to be stored in and integrate it with our own image format in the image.c file*/
+
 #include "ppm.h"
 
 PPMFile ppm_data;

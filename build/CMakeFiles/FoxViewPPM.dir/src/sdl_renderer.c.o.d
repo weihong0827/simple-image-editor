@@ -119,8 +119,8 @@ CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o: \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_version.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_video_capture.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_oldnames.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/image.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/adjustment_func.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/image.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/adjustment_func.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/stdlib.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/wait.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_pid_t.h \

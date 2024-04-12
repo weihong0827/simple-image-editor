@@ -87,52 +87,38 @@ CMakeFiles/FoxViewPPM.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/FoxViewPPM.dir/src/main.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/main.c" -o CMakeFiles/FoxViewPPM.dir/src/main.c.s
 
-CMakeFiles/FoxViewPPM.dir/src/ppm.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
-CMakeFiles/FoxViewPPM.dir/src/ppm.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/ppm.c
-CMakeFiles/FoxViewPPM.dir/src/ppm.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/FoxViewPPM.dir/src/ppm.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/src/ppm.c.o -MF CMakeFiles/FoxViewPPM.dir/src/ppm.c.o.d -o CMakeFiles/FoxViewPPM.dir/src/ppm.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/ppm.c"
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-src/sdl_engine.c
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o -MF CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o.d -o CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-src/sdl_engine.c"
 
-CMakeFiles/FoxViewPPM.dir/src/ppm.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/FoxViewPPM.dir/src/ppm.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/ppm.c" > CMakeFiles/FoxViewPPM.dir/src/ppm.c.i
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-src/sdl_engine.c" > CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.i
 
-CMakeFiles/FoxViewPPM.dir/src/ppm.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/FoxViewPPM.dir/src/ppm.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/ppm.c" -o CMakeFiles/FoxViewPPM.dir/src/ppm.c.s
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-src/sdl_engine.c" -o CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.s
 
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/sdl_engine.c
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o -MF CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o.d -o CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/sdl_engine.c"
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-src/sdl_renderer.c
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o -MF CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o.d -o CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-src/sdl_renderer.c"
 
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/sdl_engine.c" > CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.i
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-src/sdl_renderer.c" > CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.i
 
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/sdl_engine.c" -o CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.s
-
-CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
-CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/sdl_renderer.c
-CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o -MF CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o.d -o CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/sdl_renderer.c"
-
-CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/sdl_renderer.c" > CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.i
-
-CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/sdl_renderer.c" -o CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.s
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-src/sdl_renderer.c" -o CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.s
 
 CMakeFiles/FoxViewPPM.dir/src/image.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
 CMakeFiles/FoxViewPPM.dir/src/image.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/image.c
 CMakeFiles/FoxViewPPM.dir/src/image.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/FoxViewPPM.dir/src/image.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/FoxViewPPM.dir/src/image.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/src/image.c.o -MF CMakeFiles/FoxViewPPM.dir/src/image.c.o.d -o CMakeFiles/FoxViewPPM.dir/src/image.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/image.c"
 
 CMakeFiles/FoxViewPPM.dir/src/image.c.i: cmake_force
@@ -146,7 +132,7 @@ CMakeFiles/FoxViewPPM.dir/src/image.c.s: cmake_force
 CMakeFiles/FoxViewPPM.dir/src/preset.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
 CMakeFiles/FoxViewPPM.dir/src/preset.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/preset.c
 CMakeFiles/FoxViewPPM.dir/src/preset.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/FoxViewPPM.dir/src/preset.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/FoxViewPPM.dir/src/preset.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/src/preset.c.o -MF CMakeFiles/FoxViewPPM.dir/src/preset.c.o.d -o CMakeFiles/FoxViewPPM.dir/src/preset.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/preset.c"
 
 CMakeFiles/FoxViewPPM.dir/src/preset.c.i: cmake_force
@@ -160,7 +146,7 @@ CMakeFiles/FoxViewPPM.dir/src/preset.c.s: cmake_force
 CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o: CMakeFiles/FoxViewPPM.dir/flags.make
 CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o: /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/adjustment_func.c
 CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o: CMakeFiles/FoxViewPPM.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o -MF CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o.d -o CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o -c "/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/src/adjustment_func.c"
 
 CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.i: cmake_force
@@ -174,9 +160,8 @@ CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.s: cmake_force
 # Object files for target FoxViewPPM
 FoxViewPPM_OBJECTS = \
 "CMakeFiles/FoxViewPPM.dir/src/main.c.o" \
-"CMakeFiles/FoxViewPPM.dir/src/ppm.c.o" \
-"CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o" \
-"CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o" \
+"CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o" \
+"CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o" \
 "CMakeFiles/FoxViewPPM.dir/src/image.c.o" \
 "CMakeFiles/FoxViewPPM.dir/src/preset.c.o" \
 "CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o"
@@ -185,16 +170,15 @@ FoxViewPPM_OBJECTS = \
 FoxViewPPM_EXTERNAL_OBJECTS =
 
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/main.c.o
-FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/ppm.c.o
-FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o
-FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o
+FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o
+FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/image.c.o
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/preset.c.o
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/src/adjustment_func.c.o
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/build.make
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: vendors/sdl/libSDL3.a
 FoxViewPPM.app/Contents/MacOS/FoxViewPPM: CMakeFiles/FoxViewPPM.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable FoxViewPPM.app/Contents/MacOS/FoxViewPPM"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable FoxViewPPM.app/Contents/MacOS/FoxViewPPM"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FoxViewPPM.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

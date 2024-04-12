@@ -53,6 +53,7 @@ Image *load_ppm(const char *filename) {
   return img;
 }
 
+/*written to convert our Image type into PPMFile format, a format that can be rendered by SDL engine*/
 PPMFile* to_sdl_image(Image* img, PPMFile* ppm_data){
 
   ppm_data->Header.width = img->width;

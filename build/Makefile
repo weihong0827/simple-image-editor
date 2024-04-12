@@ -168,6 +168,54 @@ uninstall/fast:
 	$(MAKE) $(MAKESILENT) -f vendors/sdl/CMakeFiles/uninstall.dir/build.make vendors/sdl/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
+foxview-src/sdl_engine.o: foxview-src/sdl_engine.c.o
+.PHONY : foxview-src/sdl_engine.o
+
+# target to build an object file
+foxview-src/sdl_engine.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o
+.PHONY : foxview-src/sdl_engine.c.o
+
+foxview-src/sdl_engine.i: foxview-src/sdl_engine.c.i
+.PHONY : foxview-src/sdl_engine.i
+
+# target to preprocess a source file
+foxview-src/sdl_engine.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.i
+.PHONY : foxview-src/sdl_engine.c.i
+
+foxview-src/sdl_engine.s: foxview-src/sdl_engine.c.s
+.PHONY : foxview-src/sdl_engine.s
+
+# target to generate assembly for a file
+foxview-src/sdl_engine.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.s
+.PHONY : foxview-src/sdl_engine.c.s
+
+foxview-src/sdl_renderer.o: foxview-src/sdl_renderer.c.o
+.PHONY : foxview-src/sdl_renderer.o
+
+# target to build an object file
+foxview-src/sdl_renderer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.o
+.PHONY : foxview-src/sdl_renderer.c.o
+
+foxview-src/sdl_renderer.i: foxview-src/sdl_renderer.c.i
+.PHONY : foxview-src/sdl_renderer.i
+
+# target to preprocess a source file
+foxview-src/sdl_renderer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.i
+.PHONY : foxview-src/sdl_renderer.c.i
+
+foxview-src/sdl_renderer.s: foxview-src/sdl_renderer.c.s
+.PHONY : foxview-src/sdl_renderer.s
+
+# target to generate assembly for a file
+foxview-src/sdl_renderer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_renderer.c.s
+.PHONY : foxview-src/sdl_renderer.c.s
+
 src/adjustment_func.o: src/adjustment_func.c.o
 .PHONY : src/adjustment_func.o
 
@@ -240,30 +288,6 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/ppm.o: src/ppm.c.o
-.PHONY : src/ppm.o
-
-# target to build an object file
-src/ppm.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/ppm.c.o
-.PHONY : src/ppm.c.o
-
-src/ppm.i: src/ppm.c.i
-.PHONY : src/ppm.i
-
-# target to preprocess a source file
-src/ppm.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/ppm.c.i
-.PHONY : src/ppm.c.i
-
-src/ppm.s: src/ppm.c.s
-.PHONY : src/ppm.s
-
-# target to generate assembly for a file
-src/ppm.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/ppm.c.s
-.PHONY : src/ppm.c.s
-
 src/preset.o: src/preset.c.o
 .PHONY : src/preset.o
 
@@ -288,54 +312,6 @@ src/preset.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/preset.c.s
 .PHONY : src/preset.c.s
 
-src/sdl_engine.o: src/sdl_engine.c.o
-.PHONY : src/sdl_engine.o
-
-# target to build an object file
-src/sdl_engine.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o
-.PHONY : src/sdl_engine.c.o
-
-src/sdl_engine.i: src/sdl_engine.c.i
-.PHONY : src/sdl_engine.i
-
-# target to preprocess a source file
-src/sdl_engine.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.i
-.PHONY : src/sdl_engine.c.i
-
-src/sdl_engine.s: src/sdl_engine.c.s
-.PHONY : src/sdl_engine.s
-
-# target to generate assembly for a file
-src/sdl_engine.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.s
-.PHONY : src/sdl_engine.c.s
-
-src/sdl_renderer.o: src/sdl_renderer.c.o
-.PHONY : src/sdl_renderer.o
-
-# target to build an object file
-src/sdl_renderer.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.o
-.PHONY : src/sdl_renderer.c.o
-
-src/sdl_renderer.i: src/sdl_renderer.c.i
-.PHONY : src/sdl_renderer.i
-
-# target to preprocess a source file
-src/sdl_renderer.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.i
-.PHONY : src/sdl_renderer.c.i
-
-src/sdl_renderer.s: src/sdl_renderer.c.s
-.PHONY : src/sdl_renderer.s
-
-# target to generate assembly for a file
-src/sdl_renderer.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/sdl_renderer.c.s
-.PHONY : src/sdl_renderer.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -348,6 +324,12 @@ help:
 	@echo "... FoxViewPPM"
 	@echo "... SDL3-static"
 	@echo "... SDL3_test"
+	@echo "... foxview-src/sdl_engine.o"
+	@echo "... foxview-src/sdl_engine.i"
+	@echo "... foxview-src/sdl_engine.s"
+	@echo "... foxview-src/sdl_renderer.o"
+	@echo "... foxview-src/sdl_renderer.i"
+	@echo "... foxview-src/sdl_renderer.s"
 	@echo "... src/adjustment_func.o"
 	@echo "... src/adjustment_func.i"
 	@echo "... src/adjustment_func.s"
@@ -357,18 +339,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/ppm.o"
-	@echo "... src/ppm.i"
-	@echo "... src/ppm.s"
 	@echo "... src/preset.o"
 	@echo "... src/preset.i"
 	@echo "... src/preset.s"
-	@echo "... src/sdl_engine.o"
-	@echo "... src/sdl_engine.i"
-	@echo "... src/sdl_engine.s"
-	@echo "... src/sdl_renderer.o"
-	@echo "... src/sdl_renderer.i"
-	@echo "... src/sdl_renderer.s"
 .PHONY : help
 
 

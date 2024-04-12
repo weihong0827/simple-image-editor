@@ -4,7 +4,7 @@
 # compile C with /Library/Developer/CommandLineTools/usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/vendors/sdl/include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/vendors/sdl/include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/vendors/sdl/include/SDL3"
+C_INCLUDES = -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/foxview-include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/build/vendors/sdl/include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/vendors/sdl/include" -I"/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/vendors/sdl/include/SDL3"
 
 C_FLAGSarm64 = -std=gnu11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk "-idirafter/Users/victoriachong/Documents/SUTD/TERM 8/50.051 PLC/FoxViewPPM/vendors/sdl/src/video/khronos"
 

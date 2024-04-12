@@ -35,9 +35,8 @@ if (WIN32)
     set(FoxViewPPM_SRC "${PROJECT_SOURCE_DIR}/build/windows/FoxViewPPM.rc")
     add_executable(${PROJECT_NAME} WIN32
         src/main.c
-        src/ppm.c
-        src/sdl_engine.c
-        src/sdl_renderer.c
+        foxview-src/sdl_engine.c
+        foxview-src/sdl_renderer.c
         src/image.c
         src/preset.c
         src/adjustment_func.c
@@ -49,9 +48,8 @@ elseif(APPLE)
     
     add_executable(${PROJECT_NAME}
         src/main.c
-        src/ppm.c
-        src/sdl_engine.c
-        src/sdl_renderer.c
+        foxview-src/sdl_engine.c
+        foxview-src/sdl_renderer.c
         src/image.c
         src/preset.c
         src/adjustment_func.c)
@@ -71,15 +69,14 @@ elseif(APPLE)
 else()
      add_executable(${PROJECT_NAME}
         src/main.c
-        src/ppm.c
-        src/sdl_engine.c
-        src/sdl_renderer.c
+        foxview-src/sdl_engine.c
+        foxview-src/sdl_renderer.c
         src/image.c
         src/preset.c
         src/adjustment_func.c)
  endif()
 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
+target_include_directories(${PROJECT_NAME} PRIVATE include foxview-include)
 
 # Link to the actual SDL3 library.
 # PRIVATE since it is for internal use only, others don't need to worry about it

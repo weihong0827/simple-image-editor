@@ -240,30 +240,6 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/ppm.o: src/ppm.c.o
-.PHONY : src/ppm.o
-
-# target to build an object file
-src/ppm.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/ppm.c.o
-.PHONY : src/ppm.c.o
-
-src/ppm.i: src/ppm.c.i
-.PHONY : src/ppm.i
-
-# target to preprocess a source file
-src/ppm.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/ppm.c.i
-.PHONY : src/ppm.c.i
-
-src/ppm.s: src/ppm.c.s
-.PHONY : src/ppm.s
-
-# target to generate assembly for a file
-src/ppm.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FoxViewPPM.dir/build.make CMakeFiles/FoxViewPPM.dir/src/ppm.c.s
-.PHONY : src/ppm.c.s
-
 src/preset.o: src/preset.c.o
 .PHONY : src/preset.o
 
@@ -357,9 +333,6 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/ppm.o"
-	@echo "... src/ppm.i"
-	@echo "... src/ppm.s"
 	@echo "... src/preset.o"
 	@echo "... src/preset.i"
 	@echo "... src/preset.s"

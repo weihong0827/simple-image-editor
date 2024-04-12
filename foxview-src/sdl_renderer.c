@@ -2,6 +2,7 @@
 
 SDL_Texture *image_texture;
 
+/*editted to allow the engine to initialise and render the specific parsed PPM image*/
 int initialize_renderer(CustomRenderer *renderer, PPMFile* image, char *window_title,
                         const int window_width, const int window_height,
                         Uint32 flags) {
@@ -49,6 +50,7 @@ int initialize_renderer(CustomRenderer *renderer, PPMFile* image, char *window_t
   return 0;
 }
 
+/*created new texture from a new image and parse into existing renderer object.*/
 void reinit_renderer(CustomRenderer *renderer, PPMFile* image){
   SDL_Surface *pixel_surface = SDL_CreateSurfaceFrom(
       image->Body.pixel_data, renderer->screen_width, renderer->screen_height,
@@ -72,6 +74,8 @@ void terminate_renderer(CustomRenderer *renderer) {
   SDL_DestroyWindow(renderer->window);
 }
 
+/*created to only destroy the texture created instead of the whole renderer,
+allowing preview of a new image without destroying the whole renderer object*/
 void destroy_texture(){
   SDL_DestroyTexture(image_texture);
 }

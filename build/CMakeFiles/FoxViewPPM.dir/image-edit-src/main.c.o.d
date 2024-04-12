@@ -1,19 +1,26 @@
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/sdl_engine.c \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_engine.h \
+CMakeFiles/FoxViewPPM.dir/image-edit-src/main.c.o: \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-src/main.c \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/main.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/dirent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/cdefs.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_symbol_aliasing.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_posix_availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/machine/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/arm/_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_pthread/_pthread_types.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/dirent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_ino_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/Availability.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityVersions.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityInternal.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityInternalLegacy.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/image.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/adjustment_func.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_ctype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/cdefs.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_symbol_aliasing.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_posix_availability.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/runetype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/machine/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/arm/_types.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_pthread/_pthread_types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_size_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_ct_rune_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_rune_t.h \
@@ -21,10 +28,6 @@ CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_wint_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/stdio.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_stdio.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/Availability.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityVersions.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityInternal.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityInternalLegacy.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_va_list.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/machine/types.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/arm/types.h \
@@ -84,6 +87,8 @@ CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/malloc/_malloc_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_mode_t.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/preset.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_engine.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_renderer.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_stdinc.h \
@@ -151,4 +156,10 @@ CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_timer.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_version.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_video_capture.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_oldnames.h
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_oldnames.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/string.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_rsize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_errno_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/secure/_strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/secure/_string.h

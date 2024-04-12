@@ -31,6 +31,25 @@ The program is run through the command line, where you can specify the image fil
 - **Undo Functionality**: Supports undoing up to 9 times from the latest state to allow users to revert changes.
 - **Limited State Tracking**: To manage memory efficiently and avoid infinite states, the program keeps up to 10 past states of the photo.
 
+## FoxView previewer integration
+[Original FoxView PPM repository](https://github.com/digitsensitive/FoxViewPPM/tree/main)
+
+To run the program with the FoxView PPM preview integration
+```bash
+## in the FoxViewPPM home directory
+cmake -S . -B build 
+git submodule update --init --recursive #pull the SDL external library files
+
+cmake --build ./build --config Release #build the project binaries
+
+./build/FoxViewPPM.app/Contents/MacOS/FoxViewPPM #to run the application
+```
+
+### Directory structure
+- **include and src** directories, have the same files as the simple-image-editor version of the application, with a few extra functions to facilitate integration with the previewer sdl engine.
+- **foxview-include and foxview-src** contain the code from the original repository, with some modifications made by us to facilitate the integration to our program.
+  - we do not make use of the `ppm.c and ppm.h` files as we make use of our own representation of the PPM image in the `image.c and image.h` files
+
 ## Input and Output Requirements
 
 ### Input

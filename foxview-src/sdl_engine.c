@@ -1,5 +1,6 @@
 #include "sdl_engine.h"
 
+/*editted to allow the engine to initialise and render the specific parsed PPM image*/
 int initialize_engine(SDLEngine* engine, const char* title, PPMFile* image) {
   engine->is_running = 1;
 

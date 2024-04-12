@@ -1,6 +1,6 @@
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/sdl_engine.c \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_engine.h \
+CMakeFiles/FoxViewPPM.dir/image-edit-src/preset.c.o: \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-src/preset.c \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/preset.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/image.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/adjustment_func.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/ctype.h \
@@ -84,71 +84,9 @@ CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/malloc/_malloc_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_renderer.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_stdinc.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_platform_defines.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/AvailabilityMacros.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/TargetConditionals.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/inttypes.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/inttypes.h \
-  /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/wchar.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_mbstate_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/time.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_clock_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_time_t.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_timespec.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_wctype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/__wctype.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_types/_wctype_t.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_begin_code.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_close_code.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_assert.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_atomic.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_audio.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_endian.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_error.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_mutex.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_properties.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_rwops.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_thread.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_bits.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_blendmode.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_clipboard.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_cpuinfo.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_events.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_gamepad.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_joystick.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_guid.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_sensor.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_keyboard.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_keycode.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_scancode.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_video.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_pixels.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_rect.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_surface.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_mouse.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_pen.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_quit.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_touch.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_filesystem.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_haptic.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_hidapi.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_hints.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_init.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_loadso.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_locale.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_log.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_messagebox.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_metal.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_misc.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_platform.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_power.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_render.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_system.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_timer.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_version.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_video_capture.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_oldnames.h
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/string.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_rsize_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_errno_t.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/secure/_strings.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/secure/_string.h

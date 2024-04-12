@@ -1,8 +1,8 @@
-CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/src/sdl_engine.c \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_engine.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/image.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/image-edit-include/adjustment_func.h \
+CMakeFiles/FoxViewPPM.dir/foxview-src/sdl_engine.c.o: \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-src/sdl_engine.c \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-include/sdl_engine.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/image.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/adjustment_func.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_ctype.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/cdefs.h \
@@ -84,7 +84,7 @@ CMakeFiles/FoxViewPPM.dir/src/sdl_engine.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/malloc/_malloc_type.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_mode_t.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_renderer.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-include/sdl_renderer.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_stdinc.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_platform_defines.h \

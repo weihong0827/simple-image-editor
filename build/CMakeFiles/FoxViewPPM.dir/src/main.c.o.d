@@ -88,8 +88,8 @@ CMakeFiles/FoxViewPPM.dir/src/main.c.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_dev_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_mode_t.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/preset.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_engine.h \
-  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/include/sdl_renderer.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-include/sdl_engine.h \
+  /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/foxview-include/sdl_renderer.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_stdinc.h \
   /Users/victoriachong/Documents/SUTD/TERM\ 8/50.051\ PLC/FoxViewPPM/vendors/sdl/include/SDL3/SDL_platform_defines.h \
