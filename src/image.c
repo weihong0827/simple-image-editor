@@ -22,8 +22,8 @@ Image *load_ppm(const char *filename) {
     free(img);
     return NULL;
   }
-  
-  if (strcmp(file_type,"P3")) {
+
+  if (strcmp(file_type, "P3")) {
     printf("Error: not a P3 PPM file\n");
     fclose(fp);
     free(img);
@@ -55,7 +55,7 @@ Image *load_ppm(const char *filename) {
 void save_ppm(const char *filename, Image *img) {
   int i, j;
   char save_path[100];
-  char* p = strdup(filename);
+  char *p = strdup(filename);
   FILE *fp;
   p[strlen(filename) - 4] = '\0';
   snprintf(save_path, strlen(p) + 10, "%s_edit.ppm", p);
@@ -155,6 +155,7 @@ void adjust_tint(Image *img, float change) {
     }
   }
 }
+
 void adjust_brightness(Image *img, float change) {
   AdjustmentParms *params = initParam(BRIGHTNESS, change, 0, 255);
   image_apply(img, brightness_func, params);
@@ -169,10 +170,18 @@ void adjust_shadow(Image *img, float gamma) {
 
 /* cannot use image apply */
 void adjust_greyscale(Image *img, float change) {
-  /* change is not used */
-  AdjustmentParms *params = initParam(GREY_SCALE, 0, 0, 255);
-  image_apply(img, grey_scale_func, params);
-  free(params);
+  int i, j, k;
+  float brightness_value;
+  for (i = 0; i < img->height; i++) {
+    for (j = 0; j < img->width; j++) {
+      brightness_value = img->pixels[i][j][0] * 0.299 +
+                         img->pixels[i][j][1] * 0.587 +
+                         img->pixels[i][j][2] * 0.114;
+      for (k = 0; k < 3; k++) {
+        img->pixels[i][j][k] = brightness_value;
+      }
+    }
+  }
 }
 void adjust_negate(Image *img, float change) {
   /* 0 for negate red channel, 1 for negate green channel, 2 for negate blue
@@ -195,6 +204,7 @@ void high_contrast(Image *img, float change) {
   free(params);
 }
 void add_noise(Image *img, float change) {
+
   AdjustmentParms *params = initParam(NOISE, change, 0, 255);
   image_apply(img, noise_adjustment, params);
   free(params);

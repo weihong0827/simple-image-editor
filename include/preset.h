@@ -2,16 +2,14 @@
 #define PRESET_H
 #include "image.h"
 
-#define NUM_COMMANDS 8
+#define NUM_COMMANDS 9
 
-typedef struct
-{
+typedef struct {
   char *command;
   void (*func)(Image *, float);
 } Command;
 
-typedef struct
-{
+typedef struct {
   int cmd_index;
   float value;
   int preset_step;

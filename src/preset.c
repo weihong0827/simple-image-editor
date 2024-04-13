@@ -11,11 +11,11 @@ Command commands[] = {
     {"flatten", flatten},
     {"negate", adjust_negate},
     {"temperature", adjust_temperature},
+    {"greyscale", adjust_greyscale},
     {"tint", adjust_tint},
 };
 
-Preset *init_preset(float value, int cmd_index, int preset_step)
-{
+Preset *init_preset(float value, int cmd_index, int preset_step) {
   Preset *preset = (Preset *)malloc(sizeof(Preset));
   preset->value = value;
   preset->cmd_index = cmd_index;
@@ -24,33 +24,27 @@ Preset *init_preset(float value, int cmd_index, int preset_step)
   return preset;
 }
 
-void delete_preset(Preset **preset, int f)
-{
+void delete_preset(Preset **preset, int f) {
   int i;
 
-  for (i = 0; i < f; i++)
-  {
+  for (i = 0; i < f; i++) {
     free(preset[i]);
   }
 
   free(preset);
 }
 
-int find_command(const char *name)
-{
+int find_command(const char *name) {
   int i;
   int num_commands = sizeof(commands) / sizeof(commands[0]);
-  for (i = 0; i < num_commands; i++)
-  {
-    if (strcmp(commands[i].command, name) == 0)
-    {
+  for (i = 0; i < num_commands; i++) {
+    if (strcmp(commands[i].command, name) == 0) {
       return i;
     }
   }
   return -1;
 }
-void parseCSV(Preset ***presets, char *path, int *count)
-{
+void parseCSV(Preset ***presets, char *path, int *count) {
   FILE *file = fopen(path, "r");
   char line[1024];
   int cmd_index;
@@ -59,8 +53,7 @@ void parseCSV(Preset ***presets, char *path, int *count)
   int preset_step = *count;
   char *command;
   int i;
-  while (fgets(line, 1024, file))
-  {
+  while (fgets(line, 1024, file)) {
     token = strtok(line, ",");
     if (token == NULL)
       continue;
@@ -73,32 +66,27 @@ void parseCSV(Preset ***presets, char *path, int *count)
     value = atof(token);
     cmd_index = find_command(command);
 
-    if (cmd_index >= 0)
-    {
+    if (cmd_index >= 0) {
       *presets = (Preset **)realloc(*presets, sizeof(Preset *) * (*count + 1));
-      if (*presets == NULL)
-      {
+      if (*presets == NULL) {
         fprintf(stderr, "Failed to reallocate memory\n");
         return;
       }
       (*presets)[*count] = init_preset(value, cmd_index, preset_step + 1);
       (*count)++;
-    }
-    else
-    {
+    } else {
       printf("Unknown command.\n");
     }
   }
   *presets = (Preset **)realloc(*presets, sizeof(Preset *) * (*count + 1));
-  for (i = 0; i < *count; i++)
-  {
-    printf("Command: %s, Value: %f\n", commands[(*presets)[i]->cmd_index].command, (*presets)[i]->value);
+  for (i = 0; i < *count; i++) {
+    printf("Command: %s, Value: %f\n",
+           commands[(*presets)[i]->cmd_index].command, (*presets)[i]->value);
   }
   fclose(file);
 }
 
-Preset **enter_edits(void)
-{
+Preset **enter_edits(void) {
   char command[100];
   float value;
   int count = 0;
@@ -107,33 +95,30 @@ Preset **enter_edits(void)
   int i;
   int last_step = 0;
 
-  while (1)
-  {
+  while (1) {
     printf("Enter edit command (e.g., 'brightness') or 'done' to end edit: ");
     scanf("%s", command);
-    if (strcmp(command, "done") == 0)
-    {
-      for (i = 0; i < count; i++)
-      {
-        printf("Command: %s, Value: %f, step:%d\n", commands[presets[i]->cmd_index].command, presets[i]->value, presets[i]->preset_step);
+    if (strcmp(command, "done") == 0) {
+      for (i = 0; i < count; i++) {
+        printf("Command: %s, Value: %f, step:%d\n",
+               commands[presets[i]->cmd_index].command, presets[i]->value,
+               presets[i]->preset_step);
       }
       presets[count] = NULL;
       return presets;
     }
-    if (strcmp(command, "undo") == 0)
-    {
+    if (strcmp(command, "undo") == 0) {
       Preset *preset = presets[count - 1];
       last_step = preset->preset_step;
-      while (presets[count - 1]->preset_step == last_step && count > 1)
-      {
-        printf("Deleting %s\n", commands[presets[count - 1]->cmd_index].command);
+      while (presets[count - 1]->preset_step == last_step && count > 1) {
+        printf("Deleting %s\n",
+               commands[presets[count - 1]->cmd_index].command);
         free(presets[count - 1]);
         count--;
       }
       continue;
     }
-    if (strcmp(command, "csv") == 0)
-    {
+    if (strcmp(command, "csv") == 0) {
       printf("Enter path to CSV file: ");
       scanf("%s", command);
       printf("reading csv file %s\n", command);
@@ -142,41 +127,35 @@ Preset **enter_edits(void)
     }
     printf("%s\n", command);
     cmd_index = find_command(command);
-    if (cmd_index >= 0)
-    {
+    if (cmd_index >= 0) {
       count++;
       printf("Enter value (e.g., +10): ");
       scanf("%f", &value);
       presets = (Preset **)realloc(presets, sizeof(Preset *) * (count + 1));
       presets[count - 1] = init_preset(value, cmd_index, count);
-    }
-    else
-    {
+    } else {
       printf("Unknown command.\n");
       continue;
     }
   }
 }
 
-void save_csv(Preset **presets, char *path)
-{
+void save_csv(Preset **presets, char *path) {
   FILE *file = fopen(path, "w");
   int i = 0;
-  while (presets[i])
-  {
-    fprintf(file, "%s,%f\n", commands[presets[i]->cmd_index].command, presets[i]->value);
+  while (presets[i]) {
+    fprintf(file, "%s,%f\n", commands[presets[i]->cmd_index].command,
+            presets[i]->value);
     i++;
   }
   fclose(file);
 }
-void export_preset(Preset **presets)
-{
+void export_preset(Preset **presets) {
   char path[100];
   int save;
   printf("Do you want to save the preset to a file? Yes(1) No(0)\n");
   scanf("%d", &save);
-  if (!save)
-  {
+  if (!save) {
     return;
   }
   printf("Enter path to save preset: ");
