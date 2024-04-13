@@ -23,6 +23,18 @@ It will automatically compile the source code and run the program.
 
 The program is run through the command line, where you can specify the image file and desired edits according to the supported formats and commands.
 
+## Folder Structure
+- **src**: Contains the source code for the image editing tool.
+- **images**: Contains sample images for testing the program.
+- **includes**: Contains the header files for the program.
+The [Makefile](./Makefile) contains the commands to compile and run the program.
+There are 4 main files in the src folder:
+  - **main.c**: Contains the main function to run the program, state machine, and user interaction.
+  - **image.c**: Contains the functions to read, write, and manipulate the image.
+  - **preset.c**: Contains the functions to handle the presets
+  - **adjustments_func.c**: Contains the functions to apply the adjustments to the image. These adjustments are called from the `image.c` file.
+
+
 ## Features
 
 - **Supported Image Formats**: Currently, the tool supports PPM and BMP file formats for easy manipulation and broad compatibility.
@@ -45,18 +57,26 @@ The program is run through the command line, where you can specify the image fil
 ## Supported Edits
 
 - Brightness
-- Contrast
-- Highlights
+- High Contrast
 - Shadows
 - Temperature
 - Tint
-- Black & White Filter
 - Image Presets
-- Image Resizing
+- Grey Scale
+- Negative
+- Flatten
+- Add Noise
+
 
 ## Parser Requirements
 
 The parser is designed to handle PPM files as shown in the example provided. It will parse the header to determine the image format, size, and maximum RGB value. Each pixel's RGB components are then read and processed according to the user's commands.
+
+We also have a CSV parser that reads the CSV file and applies the edits to the image. The CSV file should be formatted as follows:
+```
+command,value
+```
+You can also save the presets in the CSV file and apply them to the image.
 
 ## Program State Machine
 
@@ -73,11 +93,3 @@ To facilitate undoing changes, the program tracks the state of the photo, mainta
 - **Reset Functionality**: Users can reset the image to its initial state (no edits).
 - **Edit Limitations**: Due to the RGB components being 1 byte each, there's a limit to the degree of edits. The program ensures that edits stay within viable ranges and notifies users if an edit is no longer doable.
 
-
-## Contribution
-
-Contributions to this project are welcome. Please adhere to standard coding practices and provide documentation for any new features or edits. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
