@@ -63,8 +63,14 @@ int apply_edits(Image *image, Preset **presets) {
 
 int check_export(void) {
   int export;
+  int valid;
   printf("Would you like to export the image? Yes(1) No(0)\n");
-  scanf("%d", &export);
+  valid = scanf("%d", &export);
+  while(!valid){
+    while (getchar() != '\n');
+    printf("Invalid value. Please enter a number.\n");
+    valid = scanf("%f", &export);
+  }
   return export;
 }
 

@@ -94,9 +94,10 @@ Preset **enter_edits(void) {
   int cmd_index;
   int i;
   int last_step = 0;
+  int stored = 0;
 
   while (1) {
-    printf("Enter edit command (e.g., 'brightness') or 'done' to end edit: ");
+    printf("Enter edit command (e.g., 'brightness') or 'done' to apply edits: ");
     scanf("%s", command);
     if (strcmp(command, "done") == 0) {
       for (i = 0; i < count; i++) {
@@ -130,7 +131,12 @@ Preset **enter_edits(void) {
     if (cmd_index >= 0) {
       count++;
       printf("Enter value (e.g., +10): ");
-      scanf("%f", &value);
+      stored = scanf("%f", &value);
+      while (!stored) {
+        while (getchar() != '\n');
+        printf("Invalid value. Please enter a number.\n");
+        stored = scanf("%f", &value);
+      }
       presets = (Preset **)realloc(presets, sizeof(Preset *) * (count + 1));
       presets[count - 1] = init_preset(value, cmd_index, count);
     } else {
@@ -153,8 +159,15 @@ void save_csv(Preset **presets, char *path) {
 void export_preset(Preset **presets) {
   char path[100];
   int save;
+  int stored;
   printf("Do you want to save the preset to a file? Yes(1) No(0)\n");
-  scanf("%d", &save);
+  stored = scanf("%f", &save);
+  while (!stored) {
+    while (getchar() != '\n');
+    printf("Invalid value. Please enter a number.\n");
+    stored = scanf("%f", &save);
+  }
+  
   if (!save) {
     return;
   }
