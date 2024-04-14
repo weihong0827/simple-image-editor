@@ -161,11 +161,11 @@ void export_preset(Preset **presets) {
   int save;
   int stored;
   printf("Do you want to save the preset to a file? Yes(1) No(0)\n");
-  stored = scanf("%f", &save);
+  stored = scanf("%d", &save);
   while (!stored) {
     while (getchar() != '\n');
     printf("Invalid value. Please enter a number.\n");
-    stored = scanf("%f", &save);
+    stored = scanf("%d", &save);
   }
   
   if (!save) {

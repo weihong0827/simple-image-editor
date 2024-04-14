@@ -13,11 +13,17 @@ Image **access_files(char *dir_path, int *all) {
   struct dirent *f;
   int count = 0;
   char pathname[100];
+  int valid;
 
   if (directory) {
     printf("Directory opened. Would you like to apply the same edits to all "
            "ppms in this folder? Yes(1) No(0) \n");
-    scanf("%d", all);
+    valid = scanf("%d", all);
+    while (!valid) {
+      while (getchar() != '\n');
+      printf("Invalid value. Please enter a number.\n");
+      valid = scanf("%d", all);
+    }
     while ((f = readdir(directory))) {
       if (!strcmp(f->d_name, ".") || !strcmp(f->d_name, "..")) {
         continue;
@@ -69,7 +75,7 @@ int check_export(void) {
   while(!valid){
     while (getchar() != '\n');
     printf("Invalid value. Please enter a number.\n");
-    valid = scanf("%f", &export);
+    valid = scanf("%d", &export);
   }
   return export;
 }
