@@ -1,4 +1,4 @@
-# Image Editor in C: A CLI-Based Tool
+# Image Editor in C wit GUI
 
 ## Overview
 
