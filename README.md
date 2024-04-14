@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a CLI-based image editing tool written in C, designed to process and manipulate image files. Users can upload their desired image and adjust various aspects of the photo, such as brightness, contrast, saturation, or temperature. The program supports a select range of edits, and it is designed with simplicity and efficiency in mind, catering to those who need quick modifications to their images without the need for complex software.
+This branch contains a image editing tool written in C with Graphical User Interface, designed to process and manipulate image files. Users can upload their desired image and adjust various aspects of the photo, such as brightness, contrast, saturation, or temperature. The program supports a select range of edits, and it is designed with simplicity and efficiency in mind, catering to those who need quick modifications to their images without the need for complex software.
 ## Getting Started
 
 To use this tool, clone the repository 
@@ -14,10 +14,9 @@ Compile the source code with your C compiler.
 ```bash
 make compile
 ```
-You can directly run the program with the following command. include the name of the file you wish to edit, or the folder in which you wish to edit all the photos of.
+You can directly run the program with the following command. include the name of the file you wish to edit.
 ```bash
-make run filename=./images //folder
-make run filename=./images/caked.ppm //file
+make run filename=./images/cake.ppm //file
 ```
 It will automatically compile the source code and run the program.
 
@@ -26,8 +25,8 @@ The program is run through the command line, where you can specify the image fil
 ## Features
 
 - **Supported Image Formats**: Currently, the tool supports PPM and BMP file formats for easy manipulation and broad compatibility.
-- **CLI-Based Editing**: All edits are made through the command line interface (CLI), allowing users to specify their desired adjustments in a straightforward manner (e.g., `Brightness -1`, `Contrast +5`).
-- **Preview and Export**: The program provides a preview of the image after edits are applied. Users can then choose to export and save the file, either overwriting the original file or creating a new one.
+- **GUI Editing**: All edits are made through the Graphical User Interface (GUI), allowing users to specify their desired adjustments in a straightforward manner (e.g., `Brightness`, `Shadow`, etc).
+- **Preview and Export**: The program provides a preview of the image while editing. Users can then choose to export and save the file.
 - **Undo Functionality**: Supports undoing up to 9 times from the latest state to allow users to revert changes.
 - **Limited State Tracking**: To manage memory efficiently and avoid infinite states, the program keeps up to 10 past states of the photo.
 
@@ -36,7 +35,7 @@ The program is run through the command line, where you can specify the image fil
 ### Input
 
 - **Image File**: An image in PPM or BMP format.
-- **User Commands**: Edits and commands inputted from the CLI.
+- **User Commands**: Edits and commands inputted from the GUI.
 
 ### Output
 
@@ -46,11 +45,10 @@ The program is run through the command line, where you can specify the image fil
 
 - Brightness
 - Contrast
-- Highlights
 - Shadows
 - Temperature
 - Tint
-- Black & White Filter
+- Greyscale Filter
 - Image Presets
 - Image Resizing
 

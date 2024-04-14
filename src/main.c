@@ -4,9 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-Image states[5];
+Image states[MAX_HISTORY];
 
-// add new state to the states array
 void add_state(Image *img) {
   for (int i = 4; i > 0; i--) {
     states[i] = states[i - 1];
@@ -27,7 +26,6 @@ void add_state(Image *img) {
   states[0] = *new_img;
 }
 
-// undo the last state
 void undo(Image *img) {
   for (int i = 0; i < img->height; i++) {
     for (int j = 0; j < img->width; j++) {
@@ -78,6 +76,7 @@ void updateImage(GtkWidget *image, Image *img) {
 }
 
 void addAdjustment(GtkWidget *button, CallbackData *data) {
+  add_state(data->img);
   int num = atoi(gtk_label_get_text(GTK_LABEL(data->adj)));
   num += 1;
   updateAdjustment(GTK_LABEL(data->adj), num);
@@ -98,11 +97,11 @@ void addAdjustment(GtkWidget *button, CallbackData *data) {
     add_noise(data->img, 0.1);
   }
 
-  add_state(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void minusAdjustment(GtkWidget *button, CallbackData *data) {
+  add_state(data->img);
   int num = atoi(gtk_label_get_text(GTK_LABEL(data->adj)));
   num -= 1;
   updateAdjustment(GTK_LABEL(data->adj), num);
@@ -120,49 +119,54 @@ void minusAdjustment(GtkWidget *button, CallbackData *data) {
     adjust_tint(data->img, -5);
   }
 
-  add_state(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void redNegate(GtkWidget *button, CallbackData *data) {
-  adjust_negate(data->img, 0);
   add_state(data->img);
+  adjust_negate(data->img, 0);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void greenNegate(GtkWidget *button, CallbackData *data) {
-  adjust_negate(data->img, 1);
   add_state(data->img);
+  adjust_negate(data->img, 1);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void blueNegate(GtkWidget *button, CallbackData *data) {
-  adjust_negate(data->img, 2);
   add_state(data->img);
+  adjust_negate(data->img, 2);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void redFlatten(GtkWidget *button, CallbackData *data) {
-  flatten(data->img, 0);
   add_state(data->img);
+  flatten(data->img, 0);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void greenFlatten(GtkWidget *button, CallbackData *data) {
-  flatten(data->img, 1);
   add_state(data->img);
+  flatten(data->img, 1);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void blueFlatten(GtkWidget *button, CallbackData *data) {
-  flatten(data->img, 2);
   add_state(data->img);
+  flatten(data->img, 2);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
 void applyHighContrast(GtkWidget *button, CallbackData *data) {
-  high_contrast(data->img, 128);
   add_state(data->img);
+  high_contrast(data->img, 128);
+  updateImage(GTK_WIDGET(data->image), data->img);
+}
+
+void applyGrayscale(GtkWidget *button, CallbackData *data) {
+  add_state(data->img);
+  adjust_greyscale(data->img);
   updateImage(GTK_WIDGET(data->image), data->img);
 }
 
@@ -183,6 +187,11 @@ void reset_button_clicked(GtkButton *button, ResetData *data) {
       data->edited_img->pixels[i][j][2] = data->original_img->pixels[i][j][2];
     }
   }
+  updateAdjustment(GTK_LABEL(data->brightness_adj), 0);
+  updateAdjustment(GTK_LABEL(data->shadow_adj), 0);
+  updateAdjustment(GTK_LABEL(data->temperature_adj), 0);
+  updateAdjustment(GTK_LABEL(data->tint_adj), 0);
+  updateAdjustment(GTK_LABEL(data->noise_adj), 0);
   updateImage(GTK_WIDGET(data->image), data->edited_img);
   for (int i = 0; i < 5; i++) {
     states[i].pixels = NULL;
@@ -199,39 +208,41 @@ void save_button_clicked(GtkButton *button, Image *img) {
 int main(int argc, char *argv[]) {
   gtk_init(&argc, &argv);
 
-  // Check for command line arguments (image filename)
   if (argc != 2) {
     printf("Usage: %s <image.ppm>\n", argv[0]);
     return 1;
   }
 
-  // Load PPM image
   Image *img = load_ppm(argv[1]);
   if (!img) {
     printf("Error loading image\n");
     return 1;
   }
 
-  // copy the image to original_image for reset
-  Image *original_img = load_ppm(argv[1]);
-  if (!original_img) {
-    printf("Error loading image\n");
-    return 1;
+  Image *original_img = malloc(sizeof(Image));
+  original_img->width = img->width;
+  original_img->height = img->height;
+  original_img->pixels =  malloc(img->height * sizeof(int **));
+  for (int i = 0; i < img->height; i++) {
+    original_img->pixels[i] = malloc(img->width * sizeof(int *));
+    for (int j = 0; j < img->width; j++) {
+      original_img->pixels[i][j] = malloc(3 * sizeof(int));
+      original_img->pixels[i][j][0] = img->pixels[i][j][0];
+      original_img->pixels[i][j][1] = img->pixels[i][j][1];
+      original_img->pixels[i][j][2] = img->pixels[i][j][2];
+    }
   }
 
-  // Convert image to GdkPixbuf
   GdkPixbuf *pixbuf = convert_image_to_pixbuf(img);
   if (!pixbuf) {
     printf("Error converting image to pixbuf\n");
     return 1;
   }
 
-  // Window and image widget
   GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title(GTK_WINDOW(window), "LiteRoom Image Editor");
   GtkWidget *image = gtk_image_new_from_pixbuf(pixbuf);
 
-  // Labels
   GtkWidget *label_brightness = gtk_label_new("Brightness");
   GtkWidget *brightness_value = gtk_label_new("0");
   GtkWidget *label_shadow = gtk_label_new("Shadow");
@@ -245,6 +256,7 @@ int main(int argc, char *argv[]) {
   GtkWidget *label_negate = gtk_label_new("Negate");
   GtkWidget *label_flatten = gtk_label_new("Flatten");
   GtkWidget *label_high_contrast = gtk_label_new("High Contrast");
+  GtkWidget *label_grayscale = gtk_label_new("Grayscale");
 
   UndoData *undo_data = malloc(sizeof(UndoData));
   undo_data->image = image;
@@ -254,6 +266,11 @@ int main(int argc, char *argv[]) {
   reset_data->image = image;
   reset_data->original_img = original_img;
   reset_data->edited_img = img;
+  reset_data->brightness_adj = brightness_value;
+  reset_data->shadow_adj = shadow_value;
+  reset_data->temperature_adj = temp_value;
+  reset_data->tint_adj = tint_value;
+  reset_data->noise_adj = noise_value;
 
   CallbackData *brightness_data = malloc(sizeof(CallbackData));
   brightness_data->command = "Brightness";
@@ -303,75 +320,75 @@ int main(int argc, char *argv[]) {
   high_contrast_data->image = image;
   high_contrast_data->img = img;
 
-  // Undo button
+  CallbackData *grayscale_data = malloc(sizeof(CallbackData));
+  grayscale_data->command = "Grayscale";
+  grayscale_data->adj = label_grayscale;
+  grayscale_data->image = image;
+  grayscale_data->img = img;
+
   GtkWidget *undo_button = gtk_button_new_with_label("Undo");
   g_signal_connect(undo_button, "clicked", G_CALLBACK(undo_button_clicked), undo_data);
 
-  // Reset button
   GtkWidget *reset_button = gtk_button_new_with_label("Reset");
   g_signal_connect(reset_button, "clicked", G_CALLBACK(reset_button_clicked), reset_data);
 
-  // Save button
   GtkWidget *save_button = gtk_button_new_with_label("Save");
   g_signal_connect(save_button, "clicked", G_CALLBACK(save_button_clicked), img);
 
-  // Button for brightness increase
   GtkWidget *button_increase_brightness = gtk_button_new_with_label("+");
-  g_signal_connect(button_increase_brightness, "clicked", G_CALLBACK(addAdjustment), brightness_data); // Pass image widget to the function
+  gtk_widget_set_size_request (button_increase_brightness, 30, 30);
+  g_signal_connect(button_increase_brightness, "clicked", G_CALLBACK(addAdjustment), brightness_data);
 
-  // Button for brightness decrese
   GtkWidget *button_decrease_brightness = gtk_button_new_with_label("-");
-  g_signal_connect(button_decrease_brightness, "clicked", G_CALLBACK(minusAdjustment), brightness_data); // Pass image widget to the function
+  gtk_widget_set_size_request (button_increase_brightness, 30, 30);
+  g_signal_connect(button_decrease_brightness, "clicked", G_CALLBACK(minusAdjustment), brightness_data);
 
-  // Button for shadow increase
   GtkWidget *button_increase_shadow = gtk_button_new_with_label("+");
-  g_signal_connect(button_increase_shadow, "clicked", G_CALLBACK(addAdjustment), shadow_data); // Pass image widget to the function
+  g_signal_connect(button_increase_shadow, "clicked", G_CALLBACK(addAdjustment), shadow_data);
 
-  // Button for shadow decrease
   GtkWidget *button_decrease_shadow = gtk_button_new_with_label("-");
-  g_signal_connect(button_decrease_shadow, "clicked", G_CALLBACK(minusAdjustment), shadow_data); // Pass image widget to the function
+  g_signal_connect(button_decrease_shadow, "clicked", G_CALLBACK(minusAdjustment), shadow_data);
 
-  // Button for temp increase
   GtkWidget *button_increase_temp = gtk_button_new_with_label("+");
-  g_signal_connect(button_increase_temp, "clicked", G_CALLBACK(addAdjustment), temp_data); // Pass image widget to the function
+  g_signal_connect(button_increase_temp, "clicked", G_CALLBACK(addAdjustment), temp_data);
 
-  // Button for temp decrease
   GtkWidget *button_decrease_temp = gtk_button_new_with_label("-");
-  g_signal_connect(button_decrease_temp, "clicked", G_CALLBACK(minusAdjustment), temp_data); // Pass image widget to the function
+  g_signal_connect(button_decrease_temp, "clicked", G_CALLBACK(minusAdjustment), temp_data);
 
-  // Button for tint increase
   GtkWidget *button_increase_tint = gtk_button_new_with_label("+");
-  g_signal_connect(button_increase_tint, "clicked", G_CALLBACK(addAdjustment), tint_data); // Pass image widget to the function
+  g_signal_connect(button_increase_tint, "clicked", G_CALLBACK(addAdjustment), tint_data);
 
-  // Button for tint decrease
   GtkWidget *button_decrease_tint = gtk_button_new_with_label("-");
-  g_signal_connect(button_decrease_tint, "clicked", G_CALLBACK(minusAdjustment), tint_data); // Pass image widget to the function
+  g_signal_connect(button_decrease_tint, "clicked", G_CALLBACK(minusAdjustment), tint_data);
 
-  // Button for noise increase
   GtkWidget *button_increase_noise = gtk_button_new_with_label("+");
-  g_signal_connect(button_increase_noise, "clicked", G_CALLBACK(addAdjustment), noise_data); // Pass image widget to the function
+  g_signal_connect(button_increase_noise, "clicked", G_CALLBACK(addAdjustment), noise_data);
 
-  // Button for negate red, green, blue
   GtkWidget *button_negate_red = gtk_button_new_with_label("Red");
   GtkWidget *button_negate_green = gtk_button_new_with_label("Green");
   GtkWidget *button_negate_blue = gtk_button_new_with_label("Blue");
-  g_signal_connect(button_negate_red, "clicked", G_CALLBACK(redNegate), negate_data); // Pass image widget to the function
-  g_signal_connect(button_negate_green, "clicked", G_CALLBACK(greenNegate), negate_data); // Pass image widget to the function
-  g_signal_connect(button_negate_blue, "clicked", G_CALLBACK(blueNegate), negate_data); // Pass image widget to the function
+  g_signal_connect(button_negate_red, "clicked", G_CALLBACK(redNegate), negate_data);
+  g_signal_connect(button_negate_green, "clicked", G_CALLBACK(greenNegate), negate_data);
+  g_signal_connect(button_negate_blue, "clicked", G_CALLBACK(blueNegate), negate_data);
+
   GtkWidget *button_flatten_red = gtk_button_new_with_label("Red");
   GtkWidget *button_flatten_green = gtk_button_new_with_label("Green");
   GtkWidget *button_flatten_blue = gtk_button_new_with_label("Blue");
-  g_signal_connect(button_flatten_red, "clicked", G_CALLBACK(redFlatten), flatten_data); // Pass image widget to the function
-  g_signal_connect(button_flatten_green, "clicked", G_CALLBACK(greenFlatten), flatten_data); // Pass image widget to the function
-  g_signal_connect(button_flatten_blue, "clicked", G_CALLBACK(blueFlatten), flatten_data); // Pass image widget to the function
-  GtkWidget *button_high_contrast = gtk_button_new_with_label("Apply");
-  g_signal_connect(button_high_contrast, "clicked", G_CALLBACK(applyHighContrast), high_contrast_data); // Pass image widget to the function
+  g_signal_connect(button_flatten_red, "clicked", G_CALLBACK(redFlatten), flatten_data);
+  g_signal_connect(button_flatten_green, "clicked", G_CALLBACK(greenFlatten), flatten_data);
+  g_signal_connect(button_flatten_blue, "clicked", G_CALLBACK(blueFlatten), flatten_data);
 
-  // Layout
+  GtkWidget *button_high_contrast = gtk_button_new_with_label("Apply");
+  g_signal_connect(button_high_contrast, "clicked", G_CALLBACK(applyHighContrast), high_contrast_data);
+
+  GtkWidget *button_grayscale = gtk_button_new_with_label("Apply");
+  g_signal_connect(button_grayscale, "clicked", G_CALLBACK(applyGrayscale), grayscale_data);
+
+
   GtkWidget *hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_box_pack_start(GTK_BOX(hbox), image, TRUE, TRUE, 0);
 
-  GtkWidget *editingbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 11);
+  GtkWidget *editingbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 12);
 
   GtkWidget *brightnessbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
   gtk_box_pack_start(GTK_BOX(brightnessbox), button_decrease_brightness, TRUE, TRUE, 0);
@@ -418,6 +435,10 @@ int main(int argc, char *argv[]) {
   gtk_box_pack_start(GTK_BOX(high_contrast_box), label_high_contrast, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(high_contrast_box), button_high_contrast, TRUE, TRUE, 0);
 
+  GtkWidget *grayscale_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
+  gtk_box_pack_start(GTK_BOX(grayscale_box), label_grayscale, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(grayscale_box), button_grayscale, TRUE, TRUE, 0);
+
   gtk_box_pack_start(GTK_BOX(editingbox), brightnessbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), shadowbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), tempbox, TRUE, TRUE, 0);
@@ -426,6 +447,7 @@ int main(int argc, char *argv[]) {
   gtk_box_pack_start(GTK_BOX(editingbox), negatebox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), flattenbox, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), high_contrast_box, TRUE, TRUE, 0);
+  gtk_box_pack_start(GTK_BOX(editingbox), grayscale_box, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), undo_button, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), reset_button, TRUE, TRUE, 0);
   gtk_box_pack_start(GTK_BOX(editingbox), save_button, TRUE, TRUE, 0);
@@ -434,7 +456,6 @@ int main(int argc, char *argv[]) {
 
   gtk_container_add(GTK_CONTAINER(window), hbox);
 
-  // Signals and show all
   g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
   gtk_widget_show_all(window);
 

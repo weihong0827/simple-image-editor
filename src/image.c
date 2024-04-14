@@ -149,12 +149,21 @@ void adjust_shadow(Image *img, float gamma) {
 }
 
 /* cannot use image apply */
-void adjust_greyscale(Image *img, float change) {
-  /* change is not used */
-  AdjustmentParms *params = initParam(GREY_SCALE, 0, 0, 255);
-  image_apply(img, grey_scale_func, params);
-  free(params);
+void adjust_greyscale(Image *img) {
+  int i, j, k;
+  float brightness_value;
+  for (i = 0; i < img->height; i++) {
+    for (j = 0; j < img->width; j++) {
+      brightness_value = img->pixels[i][j][0] * 0.299 +
+                         img->pixels[i][j][1] * 0.587 +
+                         img->pixels[i][j][2] * 0.114;
+      for (k = 0; k < 3; k++) {
+        img->pixels[i][j][k] = brightness_value;
+      }
+    }
+  }
 }
+
 void adjust_negate(Image *img, float change) {
   /* 0 for negate red channel, 1 for negate green channel, 2 for negate blue
    * channel */

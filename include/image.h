@@ -21,7 +21,7 @@ void image_apply(Image *img, int (*func)(AdjustmentParms *parms),
 
 void flatten(Image *img, float change);
 
-void adjust_greyscale(Image *img, float change);
+void adjust_greyscale(Image *img);
 void adjust_negate(Image *img, float change);
 void high_contrast(Image *img, float change);
 void add_noise(Image *img, float change);
