@@ -97,7 +97,7 @@ Preset **enter_edits(void) {
   int stored = 0;
 
   while (1) {
-    printf("Enter edit command (e.g., 'brightness') or 'done' to apply edits: ");
+    printf("Enter edit command (e.g., 'brightness') or 'csv' to input presets or 'done' to apply edits: ");
     scanf("%s", command);
     if (strcmp(command, "done") == 0) {
       for (i = 0; i < count; i++) {
